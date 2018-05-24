@@ -3,7 +3,7 @@ import sys, os, random, math, time
 #IMPORT PyQt5
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 #IMPORT EduSuite Functions
-import edufunctions, edugui
+import edufunctions
 
 class MainMenuCall():
 	def __init__(self):
@@ -23,6 +23,6 @@ class LoginMenuCall():
 		app = QtWidgets.QApplication(sys.argv)
 		mm_login_menu = QtWidgets.QMainWindow()
 		ui = Ui_mm_login_menu
-		ui.setupUi(mm_login_menu)
+		ui.setupUi(self,mm_login_menu)
 		mm_login_menu.showMaximized()
 		sys.exit(app.exec_())

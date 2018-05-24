@@ -93,7 +93,7 @@ class Ui_mm_login_menu(object):
         self.statusbar.setObjectName("statusbar")
         mm_login_menu.setStatusBar(self.statusbar)
 
-        self.retranslateUi(mm_login_menu)
+        Ui_mm_login_menu.retranslateUi(self,mm_login_menu)
         QtCore.QMetaObject.connectSlotsByName(mm_login_menu)
 
     def retranslateUi(self, mm_login_menu):

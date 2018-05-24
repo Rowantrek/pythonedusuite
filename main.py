@@ -9,8 +9,8 @@ import sys, os, random, math, time
 from PyQt5 import QtCore, QtGui, QtWidgets
 #IMPORT EduSuite Functions
 import edufunctions
-#IMPORT GUI CONTROLLEr
+#IMPORT GUI CONTROLLER
 import edugui
 
 if __name__ == "__main__":
-	edugui.MainMenuCall()
+	edugui.LoginMenuCall()
