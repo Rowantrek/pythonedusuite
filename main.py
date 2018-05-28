@@ -13,4 +13,5 @@ import edufunctions
 import edugui
 
 if __name__ == "__main__":
-	edugui.LoginMenuCall()
+	edugui.MenuHandler.InitGUI()
+	edugui.MenuHandler.MainMenu()
