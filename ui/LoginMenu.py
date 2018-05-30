@@ -10,6 +10,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Guif_lm_main(object):
     def setupUi(self, Guif_lm_main):
+        Guif_lm_main = QtWidgets.QFrame("Guif_main")
         Guif_lm_main.setObjectName("Guif_lm_main")
         Guif_lm_main.resize(419, 315)
         Guif_lm_main.setFrameShape(QtWidgets.QFrame.StyledPanel)

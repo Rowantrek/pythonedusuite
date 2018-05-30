@@ -105,10 +105,7 @@ class MainGUI(object):
         
         _translate = QtCore.QCoreApplication.translate
         guif_main.setWindowTitle(_translate("guif_main", "EduSuite"))
-        
-        edugui.MenuHandler.MainMenu()
-        return (guif_main)
-        
+
         sys.exit(app.exec_())
         
 
