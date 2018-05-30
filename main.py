@@ -14,4 +14,3 @@ import edugui
 
 if __name__ == "__main__":
 	edugui.MenuHandler.InitGUI()
-	edugui.MenuHandler.MainMenu()

@@ -8,7 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import edugui, edufunctions
-import sip
+import sip, sys
 
 class Ui_guif_main(object):
     def setupUi(self, guif_main):
@@ -82,7 +82,6 @@ class Ui_guif_main(object):
 
     def retranslateUi(self, guif_main):
         _translate = QtCore.QCoreApplication.translate
-        guif_main.setWindowTitle(_translate("guif_main", "EduSuite"))
         self.guif_mm_title.setText(_translate("guif_main", "EduSuite"))
         self.guif_mm_btn_login.setText(_translate("guif_main", "  Login  "))
         self.guif_mm_btn_reg.setText(_translate("guif_main", "Register"))
@@ -92,6 +91,25 @@ class Ui_guif_main(object):
         
     def reg_btn(self):
         edugui.MenuHanlder.RegisterMenu()
+        
+class MainGUI(object):
+       def init():
+        app = QtWidgets.QApplication(sys.argv)
+        guif_main = QtWidgets.QMainWindow()
+        
+        guif_main.setObjectName("guif_main")
+        guif_main.resize(792, 543)
+        guif_main.setWindowOpacity(1.0)
+        
+        guif_main.showMaximized()
+        
+        _translate = QtCore.QCoreApplication.translate
+        guif_main.setWindowTitle(_translate("guif_main", "EduSuite"))
+        
+        edugui.MenuHandler.MainMenu()
+        return (guif_main)
+        
+        sys.exit(app.exec_())
         
 
         
