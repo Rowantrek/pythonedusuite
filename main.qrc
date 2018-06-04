@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="welcomemenu">
+    <file>img/History-logo.jpg</file>
+    <file>img/computer-logo.png</file>
+    <file>img/maths-logo.png</file>
+  </qresource>
+</RCC>

@@ -11,7 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import edufunctions
 #IMPORT GUI CONTROLLER
 import edugui
+#IMPORT MAIN SETTINGS
+import settings
 
 if __name__ == "__main__":
-	edugui.InitWindow()
-	edugui.WidgetTele.MainMenu()
+	settings.init()
+	edugui.UI_MAIN.InitWindow()
