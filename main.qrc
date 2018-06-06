@@ -4,4 +4,12 @@
     <file>img/computer-logo.png</file>
     <file>img/maths-logo.png</file>
   </qresource>
+  <qresource prefix="general">
+    <file>img/placeholder.png</file>
+  </qresource>
+  <qresource prefix="math_main">
+    <file>img/primecomp.png</file>
+    <file>img/multidiv.png</file>
+    <file>img/additsubtract.png</file>
+  </qresource>
 </RCC>

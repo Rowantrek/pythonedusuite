@@ -6,7 +6,7 @@
 #IMPORT STANDARD LIBRARY
 import sys, os, random, math, time
 #IMPORT PyQt5
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
+from PyQt5 import QtCore, QtGui, QtWidgets, uic, QtWebKitWidgets
 #IMPORT EduSuite Functions
 import edufunctions
 #IMPORT MAIN GUI
@@ -214,6 +214,7 @@ class UI_MAIN(object):
 		self.guif_wm_btn_math.setIcon(icon)
 		self.guif_wm_btn_math.setIconSize(QtCore.QSize(200, 200))
 		self.guif_wm_btn_math.setObjectName("guif_wm_btn_math")
+		self.guif_wm_btn_math.clicked.connect(self.MathsMenu)
 		self.guif_wm_h_layout.addWidget(self.guif_wm_btn_math)
 		spacerItem17 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
 		self.guif_wm_h_layout.addItem(spacerItem17)
@@ -225,6 +226,7 @@ class UI_MAIN(object):
 		self.guif_wm_btn_comput.setIconSize(QtCore.QSize(200, 200))
 		self.guif_wm_btn_comput.setFlat(False)
 		self.guif_wm_btn_comput.setObjectName("guif_wm_btn_comput")
+		self.guif_wm_btn_comput.clicked.connect(self.ComputeMenu)
 		self.guif_wm_h_layout.addWidget(self.guif_wm_btn_comput)
 		spacerItem18 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
 		self.guif_wm_h_layout.addItem(spacerItem18)
@@ -236,6 +238,7 @@ class UI_MAIN(object):
 		self.guif_wm_btn_history.setIconSize(QtCore.QSize(200, 200))
 		self.guif_wm_btn_history.setFlat(False)
 		self.guif_wm_btn_history.setObjectName("guif_wm_btn_history")
+		self.guif_wm_btn_history.clicked.connect(self.HistoryMenu)
 		self.guif_wm_h_layout.addWidget(self.guif_wm_btn_history)
 		self.guif_wm_grid.addLayout(self.guif_wm_h_layout, 4, 1, 1, 1)
 		self.guif_wm_label_name = QtWidgets.QLabel(self.guif_welcome)
@@ -501,6 +504,7 @@ class UI_MAIN(object):
 		font.setPointSize(16)
 		self.guif_set_btn_confirm_user.setFont(font)
 		self.guif_set_btn_confirm_user.setObjectName("guif_set_btn_confirm_user")
+		self.guif_set_btn_confirm_user.clicked.connect(self.UpdateUsername)
 		self.gridLayout_9.addWidget(self.guif_set_btn_confirm_user, 1, 2, 1, 1)
 		self.guif_set_label_pass = QtWidgets.QLabel(self.guif_settings)
 		font = QtGui.QFont()
@@ -644,6 +648,7 @@ class UI_MAIN(object):
 		font.setPointSize(16)
 		self.guif_set_btn_confirm_pass.setFont(font)
 		self.guif_set_btn_confirm_pass.setObjectName("guif_set_btn_confirm_pass")
+		self.guif_set_btn_confirm_pass.clicked.connect(self.UpdatePass)
 		self.verticalLayout.addWidget(self.guif_set_btn_confirm_pass)
 		self.gridLayout_9.addLayout(self.verticalLayout, 3, 2, 1, 1)
 		self.guif_set_lay_newemail = QtWidgets.QHBoxLayout()
@@ -681,13 +686,22 @@ class UI_MAIN(object):
 		font.setPointSize(16)
 		self.guif_set_btn_confirm_dob.setFont(font)
 		self.guif_set_btn_confirm_dob.setObjectName("guif_set_btn_confirm_dob")
+		self.guif_set_btn_confirm_dob.clicked.connect(self.DOBUpdate)
 		self.gridLayout_9.addWidget(self.guif_set_btn_confirm_dob, 7, 2, 1, 1)
 		self.guif_set_btn_confirm_email = QtWidgets.QPushButton(self.guif_settings)
 		font = QtGui.QFont()
 		font.setPointSize(16)
 		self.guif_set_btn_confirm_email.setFont(font)
 		self.guif_set_btn_confirm_email.setObjectName("guif_set_btn_confirm_email")
+		self.guif_set_btn_confirm_email.clicked.connect(self.UpdateEmail)
 		self.gridLayout_9.addWidget(self.guif_set_btn_confirm_email, 5, 2, 1, 1)
+		self.guif_set_btn_back = QtWidgets.QPushButton(self.guif_settings)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guif_set_btn_back.setFont(font)
+		self.guif_set_btn_back.setObjectName("guif_set_btn_back")
+		self.guif_set_btn_back.clicked.connect(self.WelcomeMenu)
+		self.gridLayout_9.addWidget(self.guif_set_btn_back, 8, 1, 1, 1)
 		self.horizontalLayout_5.addLayout(self.gridLayout_9)
 		self.gridLayout_8.addLayout(self.horizontalLayout_5, 4, 0, 1, 1)
 		self.gridLayout_12.addLayout(self.gridLayout_8, 1, 1, 1, 1)
@@ -695,7 +709,226 @@ class UI_MAIN(object):
 		self.gridLayout_12.addItem(spacerItem42, 1, 2, 1, 1)
 		self.guif_mm_stacker.addWidget(self.guif_settings)
 		'''
-		FINAL GUI CODE | ADDS WIDGETS TO STACKER & SETS STACKER TO MAIN WID
+		CATEGORY MENU CODE
+		'''
+		self.guif_cm = QtWidgets.QWidget()
+		self.guif_cm.setObjectName("guif_cm")
+		self.gridLayout_10 = QtWidgets.QGridLayout(self.guif_cm)
+		self.gridLayout_10.setContentsMargins(0, 0, 0, 0)
+		self.gridLayout_10.setObjectName("gridLayout_10")
+		spacerItem43 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.gridLayout_10.addItem(spacerItem43, 1, 0, 1, 1)
+		spacerItem44 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+		self.gridLayout_10.addItem(spacerItem44, 0, 1, 1, 1)
+		self.gridLayout_13 = QtWidgets.QGridLayout()
+		self.gridLayout_13.setObjectName("gridLayout_13")
+		spacerItem45 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_13.addItem(spacerItem45, 2, 0, 1, 1)
+		spacerItem46 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_13.addItem(spacerItem46, 5, 0, 1, 1)
+		self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
+		self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+		self.guif_cm_btn_1 = QtWidgets.QPushButton(self.guif_cm)
+		font = QtGui.QFont()
+		font.setBold(True)
+		font.setWeight(75)
+		self.guif_cm_btn_1.setFont(font)
+		self.guif_cm_btn_1.setText("")
+		self.guif_cm_btn_1.setIconSize(QtCore.QSize(200, 200))
+		self.guif_cm_btn_1.setObjectName("guif_cm_btn_1")
+		self.horizontalLayout_6.addWidget(self.guif_cm_btn_1)
+		self.guif_cm_btn_2 = QtWidgets.QPushButton(self.guif_cm)
+		self.guif_cm_btn_2.setText("")
+		self.guif_cm_btn_2.setIconSize(QtCore.QSize(200, 200))
+		self.guif_cm_btn_2.setObjectName("guif_cm_btn_2")
+		self.horizontalLayout_6.addWidget(self.guif_cm_btn_2)
+		self.guif_cm_btn_3 = QtWidgets.QPushButton(self.guif_cm)
+		self.guif_cm_btn_3.setText("")
+		self.guif_cm_btn_3.setIconSize(QtCore.QSize(200, 200))
+		self.guif_cm_btn_3.setObjectName("guif_cm_btn_3")
+		self.horizontalLayout_6.addWidget(self.guif_cm_btn_3)
+		self.gridLayout_13.addLayout(self.horizontalLayout_6, 3, 0, 1, 1)
+		self.guif_cm_label_category = QtWidgets.QLabel(self.guif_cm)
+		self.guif_cm_label_category.setEnabled(True)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		font.setBold(True)
+		font.setWeight(75)
+		self.guif_cm_label_category.setFont(font)
+		self.guif_cm_label_category.setAlignment(QtCore.Qt.AlignCenter)
+		self.guif_cm_label_category.setObjectName("guif_cm_label_category")
+		self.gridLayout_13.addWidget(self.guif_cm_label_category, 1, 0, 1, 1)
+		self.guif_cm_title = QtWidgets.QLabel(self.guif_cm)
+		font = QtGui.QFont()
+		font.setPointSize(60)
+		font.setBold(True)
+		font.setItalic(True)
+		font.setWeight(75)
+		self.guif_cm_title.setFont(font)
+		self.guif_cm_title.setAlignment(QtCore.Qt.AlignCenter)
+		self.guif_cm_title.setObjectName("guif_cm_title")
+		self.gridLayout_13.addWidget(self.guif_cm_title, 0, 0, 1, 1)
+		self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
+		self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+		spacerItem47 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_7.addItem(spacerItem47)
+		self.guif_cm_btn_back = QtWidgets.QPushButton(self.guif_cm)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guif_cm_btn_back.setFont(font)
+		self.guif_cm_btn_back.setObjectName("guif_cm_btn_back")
+		self.guif_cm_btn_back.clicked.connect(self.WelcomeMenu)
+		self.horizontalLayout_7.addWidget(self.guif_cm_btn_back)
+		spacerItem48 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_7.addItem(spacerItem48)
+		self.gridLayout_13.addLayout(self.horizontalLayout_7, 6, 0, 1, 1)
+		self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
+		self.horizontalLayout_8.setContentsMargins(-1, -1, -1, 0)
+		self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+		self.guif_cm_btn_4 = QtWidgets.QPushButton(self.guif_cm)
+		self.guif_cm_btn_4.setText("")
+		self.guif_cm_btn_4.setIconSize(QtCore.QSize(200, 200))
+		self.guif_cm_btn_4.setObjectName("guif_cm_btn_4")
+		self.horizontalLayout_8.addWidget(self.guif_cm_btn_4)
+		self.guif_cm_btn_5 = QtWidgets.QPushButton(self.guif_cm)
+		self.guif_cm_btn_5.setText("")
+		self.guif_cm_btn_5.setIconSize(QtCore.QSize(200, 200))
+		self.guif_cm_btn_5.setObjectName("guif_cm_btn_5")
+		self.horizontalLayout_8.addWidget(self.guif_cm_btn_5)
+		self.guif_cm_btn_6 = QtWidgets.QPushButton(self.guif_cm)
+		self.guif_cm_btn_6.setText("")
+		self.guif_cm_btn_6.setIconSize(QtCore.QSize(200, 200))
+		self.guif_cm_btn_6.setObjectName("guif_cm_btn_6")
+		self.horizontalLayout_8.addWidget(self.guif_cm_btn_6)
+		self.gridLayout_13.addLayout(self.horizontalLayout_8, 4, 0, 1, 1)
+		self.gridLayout_10.addLayout(self.gridLayout_13, 1, 1, 1, 1)
+		spacerItem49 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.gridLayout_10.addItem(spacerItem49, 1, 2, 1, 1)
+		spacerItem50 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+		self.gridLayout_10.addItem(spacerItem50, 2, 1, 1, 1)
+		#HIDE BUTTONS
+		self.guif_cm_btn_1.hide()
+		self.guif_cm_btn_2.hide()
+		self.guif_cm_btn_3.hide()
+		self.guif_cm_btn_4.hide()
+		self.guif_cm_btn_5.hide()
+		self.guif_cm_btn_6.hide()
+		self.guif_mm_stacker.addWidget(self.guif_cm)
+		'''
+		SUB-CATEGORY MENU
+		'''
+		self.guif_scm = QtWidgets.QWidget()
+		self.guif_scm.setObjectName("guif_scm")
+		self.gridLayout_15 = QtWidgets.QGridLayout(self.guif_scm)
+		self.gridLayout_15.setContentsMargins(0, 0, 0, 0)
+		self.gridLayout_15.setObjectName("gridLayout_15")
+		self.gridLayout_14 = QtWidgets.QGridLayout()
+		self.gridLayout_14.setObjectName("gridLayout_14")
+		self.guif_scm_title = QtWidgets.QLabel(self.guif_scm)
+		font = QtGui.QFont()
+		font.setPointSize(60)
+		font.setBold(True)
+		font.setItalic(True)
+		font.setWeight(75)
+		self.guif_scm_title.setFont(font)
+		self.guif_scm_title.setAlignment(QtCore.Qt.AlignCenter)
+		self.guif_scm_title.setObjectName("guif_scm_title")
+		self.gridLayout_14.addWidget(self.guif_scm_title, 1, 0, 1, 1)
+		self.horizontalLayout_9 = QtWidgets.QHBoxLayout()
+		self.horizontalLayout_9.setContentsMargins(-1, -1, -1, 0)
+		self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+		self.guif_scm_btn_1 = QtWidgets.QPushButton(self.guif_scm)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		self.guif_scm_btn_1.setFont(font)
+		self.guif_scm_btn_1.setObjectName("guif_scm_btn_1")
+		self.horizontalLayout_9.addWidget(self.guif_scm_btn_1)
+		self.guif_scm_btn_2 = QtWidgets.QPushButton(self.guif_scm)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		self.guif_scm_btn_2.setFont(font)
+		self.guif_scm_btn_2.setObjectName("guif_scm_btn_2")
+		self.horizontalLayout_9.addWidget(self.guif_scm_btn_2)
+		self.guif_scm_btn_3 = QtWidgets.QPushButton(self.guif_scm)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		self.guif_scm_btn_3.setFont(font)
+		self.guif_scm_btn_3.setObjectName("guif_scm_btn_3")
+		self.horizontalLayout_9.addWidget(self.guif_scm_btn_3)
+		self.gridLayout_14.addLayout(self.horizontalLayout_9, 6, 0, 1, 1)
+		self.guif_scm_webview = QtWebKitWidgets.QWebView(self.guif_scm)
+		self.guif_scm_webview.setUrl(QtCore.QUrl("about:blank"))
+		self.guif_scm_webview.hide()
+		self.guif_scm_webview.setObjectName("guif_scm_webview")
+		self.gridLayout_14.addWidget(self.guif_scm_webview, 4, 0, 1, 1)
+		self.guif_scm_label_subcat = QtWidgets.QLabel(self.guif_scm)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		font.setBold(True)
+		font.setWeight(75)
+		self.guif_scm_label_subcat.setFont(font)
+		self.guif_scm_label_subcat.setAlignment(QtCore.Qt.AlignCenter)
+		self.guif_scm_label_subcat.setObjectName("guif_scm_label_subcat")
+		self.gridLayout_14.addWidget(self.guif_scm_label_subcat, 2, 0, 1, 1)
+		spacerItem51 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_14.addItem(spacerItem51, 5, 0, 1, 1)
+		self.guif_scm_info = QtWidgets.QTextBrowser(self.guif_scm)
+		self.guif_scm_info.setObjectName("guif_scm_info")
+		self.guif_scm_info.hide()
+		self.gridLayout_14.addWidget(self.guif_scm_info, 3, 0, 1, 1)
+		self.horizontalLayout_11 = QtWidgets.QHBoxLayout()
+		self.horizontalLayout_11.setContentsMargins(-1, -1, -1, 0)
+		self.horizontalLayout_11.setObjectName("horizontalLayout_11")
+		self.guif_scm_btn_4 = QtWidgets.QPushButton(self.guif_scm)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		self.guif_scm_btn_4.setFont(font)
+		self.guif_scm_btn_4.setObjectName("guif_scm_btn_4")
+		self.horizontalLayout_11.addWidget(self.guif_scm_btn_4)
+		self.guif_scm_btn_5 = QtWidgets.QPushButton(self.guif_scm)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		self.guif_scm_btn_5.setFont(font)
+		self.guif_scm_btn_5.setObjectName("guif_scm_btn_5")
+		self.horizontalLayout_11.addWidget(self.guif_scm_btn_5)
+		self.guif_scm_btn_6 = QtWidgets.QPushButton(self.guif_scm)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		self.guif_scm_btn_6.setFont(font)
+		self.guif_scm_btn_6.setObjectName("guif_scm_btn_6")
+		self.horizontalLayout_11.addWidget(self.guif_scm_btn_6)
+		self.gridLayout_14.addLayout(self.horizontalLayout_11, 7, 0, 1, 1)
+		spacerItem52 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_14.addItem(spacerItem52, 0, 0, 1, 1)
+		self.horizontalLayout_15 = QtWidgets.QHBoxLayout()
+		self.horizontalLayout_15.setContentsMargins(-1, -1, -1, 0)
+		self.horizontalLayout_15.setObjectName("horizontalLayout_15")
+		spacerItem53 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_15.addItem(spacerItem53)
+		self.guif_scm_btn_back = QtWidgets.QPushButton(self.guif_scm)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guif_scm_btn_back.setFont(font)
+		self.guif_scm_btn_back.setObjectName("guif_scm_btn_back")
+		self.guif_scm_btn_back.clicked.connect(self.BackMenu)
+		self.horizontalLayout_15.addWidget(self.guif_scm_btn_back)
+		spacerItem54 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_15.addItem(spacerItem54)
+		self.gridLayout_14.addLayout(self.horizontalLayout_15, 8, 0, 1, 1)
+		self.gridLayout_15.addLayout(self.gridLayout_14, 0, 1, 1, 1)
+		spacerItem55 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.gridLayout_15.addItem(spacerItem55, 0, 0, 1, 1)
+		spacerItem56 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.gridLayout_15.addItem(spacerItem56, 0, 2, 1, 1)
+		self.guif_scm_btn_1.setIconSize(QtCore.QSize(200, 200))
+		self.guif_scm_btn_2.setIconSize(QtCore.QSize(200, 200))
+		self.guif_scm_btn_3.setIconSize(QtCore.QSize(200, 200))
+		self.guif_scm_btn_4.setIconSize(QtCore.QSize(200, 200))
+		self.guif_scm_btn_5.setIconSize(QtCore.QSize(200, 200))
+		self.guif_scm_btn_6.setIconSize(QtCore.QSize(200, 200))
+		self.guif_mm_stacker.addWidget(self.guif_scm)
+		'''
+		FINAL GUI CODE | ADDS WIDGETS TO STACKER & SETS STACKER TO MAIN WID TO CENTRAL WIDGET DISPLAY
 		'''
 		self.gridLayout_3.addWidget(self.guif_mm_stacker, 0, 0, 1, 1)
 		self.gridLayout.addWidget(self.guif_main_grid, 0, 0, 1, 1)
@@ -751,12 +984,26 @@ class UI_MAIN(object):
 		self.guif_set_edit_newdob.setDisplayFormat(_translate("guif_main", "dd-MM-yyyy"))
 		self.guif_set_btn_confirm_dob.setText(_translate("guif_main", "Confirm"))
 		self.guif_set_btn_confirm_email.setText(_translate("guif_main", "Confirm"))
+		self.guif_set_btn_back.setText(_translate("guif_main", "Back"))
+		self.guif_cm_label_category.setText(_translate("guif_main", "Placeholder"))
+		self.guif_cm_title.setText(_translate("guif_main", "EduSuite"))
+		self.guif_cm_btn_back.setText(_translate("guif_main", "Back"))
+		self.guif_scm_title.setText(_translate("guif_main", "EduSuite"))
+		self.guif_scm_btn_1.setText(_translate("guif_main", "Quiz 1"))
+		self.guif_scm_btn_2.setText(_translate("guif_main", "Quiz 2"))
+		self.guif_scm_btn_3.setText(_translate("guif_main", "Quiz 3"))
+		self.guif_scm_label_subcat.setText(_translate("guif_main", "SubCategory Name"))
+		self.guif_scm_btn_4.setText(_translate("guif_main", "Quiz 4"))
+		self.guif_scm_btn_5.setText(_translate("guif_main", "Quiz 5"))
+		self.guif_scm_btn_6.setText(_translate("guif_main", "Quiz 6"))
+		self.guif_scm_btn_back.setText(_translate("guif_main", "Back"))
+		self.guif_scm_title.setText(_translate("guif_main", "EduSuite"))
 	'''
 		GUI CODE END | MENU NAV & FUNCTIONS START
 	'''
 	def init(self):
 		#GET VARIALBES
-		self.name = settings.name
+		self.user = settings.user
 		self.email = settings.email
 		self.dob = settings.dob
 		#INIT _translate
@@ -775,7 +1022,7 @@ class UI_MAIN(object):
 		self.guif_rm_input_date.setReadOnly(False)
 		'''	RESET LABELS '''
 		#WELCOME MENU
-		self.guif_wm_label_name.setText(_translate("guif_main", "Welcome " + self.name))
+		self.guif_wm_label_name.setText(_translate("guif_main", "Welcome " + self.user))
 		#LOGIN MENU
 		#REGISTER MENU
 		self.guif_rm_label_invalid.setText(_translate("guif_main", "Invalid Details"))
@@ -784,24 +1031,41 @@ class UI_MAIN(object):
 		#SETTINGS MENU
 		self.guif_set_label_error.hide()
 		self.guif_set_label_error.setStyleSheet("color: rgb(255, 0, 0);")
-		self.guif_set_edit_user.setText(_translate("guif_main", self.name))
+		self.guif_set_edit_user.setText(_translate("guif_main", self.user))
 		self.guif_set_edit_pass.setText(_translate("guif_main", "*********"))
 		self.guif_set_edit_email.setText(_translate("guif_main", self.email))
 		self.guif_set_edit_dob.setText(_translate("guif_main", self.dob))
 		self.guif_set_label_newuser.hide()
 		self.guif_set_edit_newuser.hide()
+		self.guif_set_edit_newuser.setText("")
 		self.guif_set_btn_confirm_user.hide()
 		self.guif_set_label_oldpass.hide()
 		self.guif_set_edit_oldpass.hide()
+		self.guif_set_edit_oldpass.setText("")
 		self.guif_set_label_newpass.hide()
 		self.guif_set_edit_newpass.hide()
+		self.guif_set_edit_newpass.setText("")
 		self.guif_set_btn_confirm_pass.hide()
 		self.guif_set_label_newemail.hide()
 		self.guif_set_edit_newemail.hide()
+		self.guif_set_edit_newemail.setText("")
 		self.guif_set_btn_confirm_email.hide()
 		self.guif_set_label_newdob.hide()
 		self.guif_set_edit_newdob.hide()
 		self.guif_set_btn_confirm_dob.hide()
+		#SUBCAT MENU
+		self.guif_scm_btn_1.hide()
+		self.guif_scm_btn_2.hide()
+		self.guif_scm_btn_3.hide()
+		self.guif_scm_btn_4.hide()
+		self.guif_scm_btn_5.hide()
+		self.guif_scm_btn_6.hide()
+		''' RESET WIDGETS '''
+		#SUBCAT
+		self.guif_scm_webview.hide()
+		self.guif_scm_webview.setUrl(QtCore.QUrl("about:blank"))
+		self.guif_scm_info.hide()
+		self.guif_scm_info.setText("")
 
 
 	''' MAIN MENU '''
@@ -881,6 +1145,20 @@ class UI_MAIN(object):
 			self.guif_set_edit_newuser.show()
 			self.guif_set_btn_confirm_user.show()
 			
+	def UpdateUsername(self):
+		oldusername = settings.user
+		username = self.guif_set_edit_newuser.text()
+		if not (len(username) > 5):
+			self.guif_set_label_error.show()
+			self.guif_set_label_error.setText("Username too short!")
+			self.guif_set_label_error.setStyleSheet("color: rgb(255, 0, 0);")
+		check = edufunctions.DBUpdate.Username(oldusername, username)
+		if (check):
+			self.guif_set_label_error.show()
+			self.guif_set_label_error.setText("Username updated!")
+			self.guif_set_label_error.setStyleSheet("color: rgb(0, 255, 0);")
+	
+			
 	def ChangePassMenu(self):
 		if (self.guif_set_label_oldpass.isVisible()):
 			self.guif_set_label_oldpass.hide()
@@ -895,6 +1173,24 @@ class UI_MAIN(object):
 			self.guif_set_edit_newpass.show()
 			self.guif_set_btn_confirm_pass.show()
 			
+	def UpdatePass(self):
+		oldpass = self.guif_set_edit_oldpass.text()
+		newpass = self.guif_set_edit_newpass.text()
+		if (len(oldpass) <= 0 or len(newpass) <= 0):
+			self.guif_set_label_error.show()
+			self.guif_set_label_error.setText("Password too short")
+			self.guif_set_label_error.setStyleSheet("color: rgb(255, 0, 0);")
+		check = edufunctions.DBUpdate.Password(oldpass, newpass)
+		if (check):
+			self.guif_set_label_error.show()
+			self.guif_set_label_error.setText("Password Changed")
+			self.guif_set_label_error.setStyleSheet("color: rgb(0, 255, 0);")
+		else:
+			self.guif_set_label_error.show()
+			self.guif_set_label_error.setText("Incorrect Password Entered!")
+			self.guif_set_label_error.setStyleSheet("color: rgb(255, 0, 0);")
+			
+			
 	def ChangeEmailMenu(self):
 		if (self.guif_set_label_newemail.isVisible()):	
 			self.guif_set_label_newemail.hide()
@@ -905,6 +1201,20 @@ class UI_MAIN(object):
 			self.guif_set_edit_newemail.show()
 			self.guif_set_btn_confirm_email.show()
 			
+	def UpdateEmail(self):
+		newemail = self.guif_set_edit_newemail.text()
+		if (len(newemail) <= 5):
+			self.guif_set_label_error.show()
+			self.guif_set_label_error.setText("Email too short")
+			self.guif_set_label_error.setStyleSheet("color: rgb(255, 0, 0);")
+		check = edufunctions.DBUpdate.Email(newemail)
+		if (check):
+			self.guif_set_label_error.show()
+			self.guif_set_label_error.setText("Email Changed")
+			self.guif_set_label_error.setStyleSheet("color: rgb(0, 255, 0);")
+
+		
+			
 	def ChangeDOBMenu(self):
 		if (self.guif_set_label_newdob.isVisible()):
 			self.guif_set_label_newdob.hide()
@@ -914,6 +1224,203 @@ class UI_MAIN(object):
 			self.guif_set_label_newdob.show()
 			self.guif_set_edit_newdob.show()
 			self.guif_set_btn_confirm_dob.show()
+			
+	def DOBUpdate(self):
+		newdob = self.guif_set_edit_newdob.text()
+		if (len(newdob) < 10):
+			self.guif_set_label_error.show()
+			self.guif_set_label_error.setText("Date of Birth Invalid!")
+			self.guif_set_label_error.setStyleSheet("color: rgb(255, 0, 0);")
+		check = edufunctions.DBUpdate.DOB(newdob)
+		if (check):
+			self.guif_set_label_error.show()
+			self.guif_set_label_error.setText("Date of Birth Changed")
+			self.guif_set_label_error.setStyleSheet("color: rgb(0, 255, 0);")
+			
+	''' CATEGORY MENU '''
+	def InitRsc(self):
+		#EACH IF STATEMENT CORRELATES TO A DIFFERENT CATEGORY
+		self.init()
+		_translate = QtCore.QCoreApplication.translate
+		#MATHS CATEGORY
+		if (self.menu == "maths"):
+			button1ico = QtGui.QIcon()
+			button1ico.addPixmap(QtGui.QPixmap(":/math_main/img/additsubtract.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_1.setIcon(button1ico)
+			self.guif_cm_btn_1.clicked.connect(self.Maths1)
+			button2ico = QtGui.QIcon()
+			button2ico.addPixmap(QtGui.QPixmap(":/math_main/img/multidiv.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_2.setIcon(button2ico)
+			button3ico = QtGui.QIcon()
+			button3ico.addPixmap(QtGui.QPixmap(":/math_main/img/primecomp.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_3.setIcon(button3ico)
+			button4ico = QtGui.QIcon()
+			button4ico.addPixmap(QtGui.QPixmap(":/math_main/img/primecomp.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_4.setIcon(button4ico)
+			button5ico = QtGui.QIcon()
+			button5ico.addPixmap(QtGui.QPixmap(":/math_main/img/primecomp.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_5.setIcon(button5ico)
+			button6ico = QtGui.QIcon()
+			button6ico.addPixmap(QtGui.QPixmap(":/math_main/img/primecomp.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_6.setIcon(button6ico)
+			self.guif_cm_label_category.setText(_translate("guif_main", "Maths"))
+			self.guif_cm_btn_1.show()
+			self.guif_cm_btn_2.show()
+			self.guif_cm_btn_3.show()
+		#COMPUTER CATEGORY
+		if (self.menu == "computer"):
+			button1ico = QtGui.QIcon()
+			button1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_1.setIcon(button1ico)
+			button2ico = QtGui.QIcon()
+			button2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_2.setIcon(button2ico)
+			button3ico = QtGui.QIcon()
+			button3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_3.setIcon(button3ico)
+			button4ico = QtGui.QIcon()
+			button4ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_4.setIcon(button4ico)
+			button5ico = QtGui.QIcon()
+			button5ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_5.setIcon(button5ico)
+			button6ico = QtGui.QIcon()
+			button6ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_6.setIcon(button6ico)
+			self.guif_cm_label_category.setText(_translate("guif_main", "Computing"))
+			self.guif_cm_btn_1.show()
+			self.guif_cm_btn_2.show()
+			self.guif_cm_btn_3.show()
+		#HISTORY CATEGORY	
+		if (self.menu == "history"):
+			button1ico = QtGui.QIcon()
+			button1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_1.setIcon(button1ico)
+			self.guif_cm_btn_1.clicked.connect(self.History1)
+			button2ico = QtGui.QIcon()
+			button2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_2.setIcon(button2ico)
+			self.guif_cm_btn_2.clicked.connect(self.History2)
+			button3ico = QtGui.QIcon()
+			button3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_3.setIcon(button3ico)
+			self.guif_cm_btn_3.clicked.connect(self.History3)
+			button4ico = QtGui.QIcon()
+			button4ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_4.setIcon(button4ico)
+			button5ico = QtGui.QIcon()
+			button5ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_5.setIcon(button5ico)
+			button6ico = QtGui.QIcon()
+			button6ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_cm_btn_6.setIcon(button6ico)
+			self.guif_cm_label_category.setText(_translate("guif_main", "History"))
+			self.guif_cm_btn_1.show()
+			self.guif_cm_btn_2.show()
+			self.guif_cm_btn_3.show()
+		self.guif_mm_stacker.setCurrentIndex(5)
+
+	def MathsMenu(self):
+		self.menu = "maths"
+		self.InitRsc()
+		
+	def ComputeMenu(self):
+		self.menu = "computer"
+		self.InitRsc()
+		
+	def HistoryMenu(self):
+		self.menu = "history"
+		self.InitRsc()
+		
+	def BackMenu(self):
+		if (self.menu == "maths"):
+			self.MathsMenu()
+		elif (self.menu == "computer"):
+			self.ComputeMenu()
+		elif (self.menu == "history"):
+			self.HistoryMenu()
+		else:
+			self.WelcomeMenu()
+	
+	''' SUB CATEGORY MENU '''
+	def InitSub(self):
+		self.init()
+		_translate = QtCore.QCoreApplication.translate
+		#MATHS
+		if (self.subcat == "maths1"):
+			self.guif_scm_label_subcat.setText(_translate("guif_main", "Addition & Multiplication"))
+			self.guif_scm_info.setText("Addition & Subtraction \n Addition is")
+			self.guif_scm_info.show()
+			self.guif_scm_btn_1.show()
+			scm1ico = QtGui.QIcon()
+			scm1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_1.setIcon(scm1ico)
+			self.guif_scm_btn_2.show()
+			scm2ico = QtGui.QIcon()
+			scm2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_2.setIcon(scm2ico)
+			self.guif_scm_btn_3.show()
+			scm3ico = QtGui.QIcon()
+			scm3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_3.setIcon(scm3ico)
+		#COMPUTER
+		if (self.subcat == "comput1"):
+			pass
+		#HISTORY
+		if (self.subcat == "hist1"):
+			self.guif_scm_label_subcat.setText(_translate("guif_main", "World War Two Basics"))
+			self.guif_scm_webview.show()
+			self.guif_scm_webview.setUrl(QtCore.QUrl("http://nrgnetwork.org/history1.html"))
+			self.guif_scm_btn_1.show()
+			scm1ico = QtGui.QIcon()
+			scm1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_1.setIcon(scm1ico)
+			self.guif_scm_btn_2.show()
+			scm2ico = QtGui.QIcon()
+			scm2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_2.setIcon(scm2ico)
+			self.guif_scm_btn_3.show()
+			scm3ico = QtGui.QIcon()
+			scm3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_3.setIcon(scm3ico)
+		self.guif_mm_stacker.setCurrentIndex(6)
+			
+	''' CALLERS FOR SUB CAT MENU '''
+	def Maths1(self):
+		self.subcat = "maths1"
+		self.InitSub()
+	
+	def Maths2(self):
+		self.subcat = "maths2"
+		self.InitSub()
+		
+	def Maths3(self):
+		self.subcat = "maths3"
+		self.InitSub()
+		
+	def Comput1(self):
+		self.subcat = "comput1"
+		self.InitSub()
+		
+	def Comput2(self):
+		self.subcat = "comput2"
+		self.InitSub()
+		
+	def Comput3(self):
+		self.subcat = "comput3"
+		self.InitSub()
+		
+	def History1(self):
+		self.subcat = "hist1"
+		self.InitSub()
+	
+	def History2(self):
+		self.subcat = "hist2"
+		self.InitSub()
+		
+	def History3(self):
+		self.subcat = "hist3"
+		self.InitSub()
 	
 	''' INIT '''
 	def InitWindow():
@@ -931,4 +1438,6 @@ class UI_MAIN(object):
 	2 - WELCOME MENU
 	3 - REGISTER MENU
 	4 - SETTING MENU
+	5 - CATEGORY MENU
+	6 - SUB CAT MENU
 '''

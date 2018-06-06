@@ -16,6 +16,15 @@ class DB():
 class LoginCheck():
 	def init(username,password):
 		DB()
+		#INIT VARIALBES DEFAULTs
+		userid = 0
+		user = ""
+		passw = ""
+		email = ""
+		dob = ""
+		mathsaccess = 0
+		comput_access = 0
+		hist_acccess = 0
 		sql = "SELECT * FROM USERS WHERE `USERNAME`=%s"
 		cursor.execute(sql, (username))
 		results = cursor.fetchall()
@@ -25,10 +34,16 @@ class LoginCheck():
 			passw = row[2]
 			email = row[3]
 			dob = row[4]
+			maths_access = row[5]
+			comput_access = row[6]
+			hist_access = row[7]
 		if (username.lower() == user.lower() and password == passw):
-			settings.name = user
+			settings.user = user
 			settings.email = email
 			settings.dob = dob
+			settings.maths_access = maths_access
+			settings.comput_access = comput_access
+			settings.hist_access = hist_access
 			return True
 		else:
 			return False
@@ -53,3 +68,54 @@ class RegisterCheck():
 		else:
 			return False
 		connection.close()
+		
+class DBUpdate():
+	def Username(oldusername,username):
+		#CALL DB
+		DB()
+		updateRequest = "UPDATE users SET username=%s WHERE username=%s"
+		cursor.execute(updateRequest, (username, oldusername))
+		connection.commit()
+		return True
+		connection.close()
+		
+	def Password(oldpass, newpass):
+		DB()
+		username = settings.user
+		query = "SELECT * FROM USERS WHERE `USERNAME`=%s"
+		cursor.execute(query, (username))
+		results = cursor.fetchall()
+		for row in results:
+			user = row[1]
+			passw = row[2]
+		if (oldpass == passw):
+			updateRequest = "UPDATE users SET password=%s WHERE username = %s"
+			cursor.execute(updateRequest, (newpass, username))
+			connection.commit()
+			return True
+		else:
+			return False
+		connection.close()
+		
+	def Email(newemail):
+		DB()
+		username = settings.user
+		updateRequest = "UPDATE users SET email=%s WHERE username=%s"
+		cursor.execute(updateRequest, (newemail, username))
+		connection.commit()
+		connection.close()
+		settings.email = newemail
+		return True
+	
+	def DOB(newdob):
+		DB()
+		username = settings.user
+		updateRequest = "UPDATE users set dob=%s WHERE username=%s"
+		cursor.execute(updateRequest, (newdob, username))
+		connection.commit()
+		connection.close()
+		settings.dob = newdob
+		return True
+		
+
+	
