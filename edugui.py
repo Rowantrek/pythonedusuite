@@ -1006,6 +1006,7 @@ class UI_MAIN(object):
 		self.user = settings.user
 		self.email = settings.email
 		self.dob = settings.dob
+		self.admin_level = settings.admin_level
 		#INIT _translate
 		_translate = QtCore.QCoreApplication.translate
 		''' RESET INPUTS'''
@@ -1022,7 +1023,14 @@ class UI_MAIN(object):
 		self.guif_rm_input_date.setReadOnly(False)
 		'''	RESET LABELS '''
 		#WELCOME MENU
-		self.guif_wm_label_name.setText(_translate("guif_main", "Welcome " + self.user))
+		if (self.admin_level == 1):
+			self.guif_wm_label_name.setText(_translate("guif_main", "Welcome Editor " + self.user))
+		elif (self.admin_level == 2):
+			self.guif_wm_label_name.setText(_translate("guif_main", "Welcome Administrator " + self.user))
+		elif (self.admin_level == 3):
+			self.guif_wm_label_name.setText(_translate("guif_main", "Welcome Super Admin " + self.user))
+		else:
+			self.guif_wm_label_name.setText(_translate("guif_main", "Welcome " + self.user))
 		#LOGIN MENU
 		#REGISTER MENU
 		self.guif_rm_label_invalid.setText(_translate("guif_main", "Invalid Details"))
@@ -1251,9 +1259,11 @@ class UI_MAIN(object):
 			button2ico = QtGui.QIcon()
 			button2ico.addPixmap(QtGui.QPixmap(":/math_main/img/multidiv.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 			self.guif_cm_btn_2.setIcon(button2ico)
+			self.guif_cm_btn_2.clicked.connect(self.Maths2)
 			button3ico = QtGui.QIcon()
 			button3ico.addPixmap(QtGui.QPixmap(":/math_main/img/primecomp.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 			self.guif_cm_btn_3.setIcon(button3ico)
+			self.guif_cm_btn_3.clicked.connect(self.Maths3)
 			button4ico = QtGui.QIcon()
 			button4ico.addPixmap(QtGui.QPixmap(":/math_main/img/primecomp.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 			self.guif_cm_btn_4.setIcon(button4ico)
@@ -1346,10 +1356,12 @@ class UI_MAIN(object):
 	def InitSub(self):
 		self.init()
 		_translate = QtCore.QCoreApplication.translate
-		#MATHS
+		''' MATHS '''
+		#ADDITION + SUBTRACTION
 		if (self.subcat == "maths1"):
-			self.guif_scm_label_subcat.setText(_translate("guif_main", "Addition & Multiplication"))
-			self.guif_scm_info.setText("Addition & Subtraction \n Addition is")
+			self.info = settings.info_content["additsub"]
+			self.guif_scm_label_subcat.setText(_translate("guif_main", "Addition & Subtraction"))
+			self.guif_scm_info.setText(self.info)
 			self.guif_scm_info.show()
 			self.guif_scm_btn_1.show()
 			scm1ico = QtGui.QIcon()
@@ -1363,10 +1375,46 @@ class UI_MAIN(object):
 			scm3ico = QtGui.QIcon()
 			scm3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 			self.guif_scm_btn_3.setIcon(scm3ico)
-		#COMPUTER
+		#MULTIPLICATION & DIVISION
+		if (self.subcat == "maths2"):
+			self.info = settings.info_content["multdiv"]
+			self.guif_scm_label_subcat.setText(_translate("guif_main", "Multiplication & Division"))
+			self.guif_scm_info.setText(self.info)
+			self.guif_scm_info.show()
+			self.guif_scm_btn_1.show()
+			scm1ico = QtGui.QIcon()
+			scm1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_1.setIcon(scm1ico)
+			self.guif_scm_btn_2.show()
+			scm2ico = QtGui.QIcon()
+			scm2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_2.setIcon(scm2ico)
+			self.guif_scm_btn_3.show()
+			scm3ico = QtGui.QIcon()
+			scm3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_3.setIcon(scm3ico)
+		#PRIME & COMPOSITION
+		if (self.subcat == "maths3"):
+			self.info = settings.info_content["primecomp"]
+			self.guif_scm_label_subcat.setText(_translate("guif_main", "Prime & Composite Numbers"))
+			self.guif_scm_info.setText(self.info)
+			self.guif_scm_info.show()
+			self.guif_scm_btn_1.show()
+			scm1ico = QtGui.QIcon()
+			scm1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_1.setIcon(scm1ico)
+			self.guif_scm_btn_2.show()
+			scm2ico = QtGui.QIcon()
+			scm2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_2.setIcon(scm2ico)
+			self.guif_scm_btn_3.show()
+			scm3ico = QtGui.QIcon()
+			scm3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.guif_scm_btn_3.setIcon(scm3ico)
+		''' COMPUTING '''
 		if (self.subcat == "comput1"):
 			pass
-		#HISTORY
+		''' HISTORY '''
 		if (self.subcat == "hist1"):
 			self.guif_scm_label_subcat.setText(_translate("guif_main", "World War Two Basics"))
 			self.guif_scm_webview.show()

@@ -25,6 +25,7 @@ class LoginCheck():
 		mathsaccess = 0
 		comput_access = 0
 		hist_acccess = 0
+		admin_level = 0
 		sql = "SELECT * FROM USERS WHERE `USERNAME`=%s"
 		cursor.execute(sql, (username))
 		results = cursor.fetchall()
@@ -37,6 +38,7 @@ class LoginCheck():
 			maths_access = row[5]
 			comput_access = row[6]
 			hist_access = row[7]
+			admin_level = row[11]
 		if (username.lower() == user.lower() and password == passw):
 			settings.user = user
 			settings.email = email
@@ -44,6 +46,7 @@ class LoginCheck():
 			settings.maths_access = maths_access
 			settings.comput_access = comput_access
 			settings.hist_access = hist_access
+			settings.admin_level = int(admin_level)
 			return True
 		else:
 			return False
@@ -117,5 +120,18 @@ class DBUpdate():
 		settings.dob = newdob
 		return True
 		
-
+class DbInfoContent():
+	def init(content_id):
+		DB()
+		#Define variables to ensure error is not given if DB does not find anything
+		info_name = ""
+		info_content = ""
+		contentQuery = "SELECT * FROM INFO WHERE info_name = %s"
+		cursor.execute(contentQuery, (content_id))
+		results = cursor.fetchall()
+		for row in results:
+			info_name = row[1]
+			info_content = row[2]
+		settings.info_content[info_name] = info_content
+		
 	
