@@ -6,6 +6,8 @@
 import pymysql, sys, random, math, time, PyQt5
 import settings
 
+''' TODO: MERGE ALL DB INTO ONE SINGLE CLASS '''
+
 class DB():
 	def __init__(self):
 		global connection
