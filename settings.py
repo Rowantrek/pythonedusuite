@@ -35,5 +35,5 @@ def init():
 	
 	info_vars = ["additsub", "multdiv", "primecomp"]
 	for _i in info_vars:
-		edufunctions.DbInfoContent.init(_i)
+		edufunctions.RDB.QueryInfoContent(_i)
 	''''''

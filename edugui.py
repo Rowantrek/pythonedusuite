@@ -1099,7 +1099,7 @@ class UI_MAIN(object):
 		password = self.guif_lm_lineEdit_pass.text()
 		#CHECK LENGTH TO MAKE SURE THEY ACTUALLY ENTERED SOMETHING
 		if (len(username) > 0 and len(password) > 0):
-			check = edufunctions.LoginCheck.init(username,password)
+			check = edufunctions.RDB.Login(username,password)
 			if (check):
 				self.WelcomeMenu()
 			else:
@@ -1133,7 +1133,7 @@ class UI_MAIN(object):
 		if (len(date_of_birth) != 10):
 			self.RegInvalid()
 		#PASS INPUTS TO REGISTER CHECK EDU FUNC
-		check = edufunctions.RegisterCheck.init(username,password,email,date_of_birth)
+		check = edufunctions.RDB.Register(username,password,email,date_of_birth)
 		if (check):
 			self.guif_rm_label_invalid.setText("Account Created")
 			self.guif_rm_label_invalid.setStyleSheet("color: rgb(0, 255, 0);")
@@ -1167,7 +1167,7 @@ class UI_MAIN(object):
 			self.guif_set_label_error.show()
 			self.guif_set_label_error.setText("Username too short!")
 			self.guif_set_label_error.setStyleSheet("color: rgb(255, 0, 0);")
-		check = edufunctions.DBUpdate.Username(oldusername, username)
+		check = edufunctions.RDB.UpdateUser(oldusername, username)
 		if (check):
 			self.guif_set_label_error.show()
 			self.guif_set_label_error.setText("Username updated!")
@@ -1195,7 +1195,7 @@ class UI_MAIN(object):
 			self.guif_set_label_error.show()
 			self.guif_set_label_error.setText("Password too short")
 			self.guif_set_label_error.setStyleSheet("color: rgb(255, 0, 0);")
-		check = edufunctions.DBUpdate.Password(oldpass, newpass)
+		check = edufunctions.RDB.UpdatePassword(oldpass, newpass)
 		if (check):
 			self.guif_set_label_error.show()
 			self.guif_set_label_error.setText("Password Changed")
@@ -1222,7 +1222,7 @@ class UI_MAIN(object):
 			self.guif_set_label_error.show()
 			self.guif_set_label_error.setText("Email too short")
 			self.guif_set_label_error.setStyleSheet("color: rgb(255, 0, 0);")
-		check = edufunctions.DBUpdate.Email(newemail)
+		check = edufunctions.RDB.UpdateEmail(newemail)
 		if (check):
 			self.guif_set_label_error.show()
 			self.guif_set_label_error.setText("Email Changed")
@@ -1246,7 +1246,7 @@ class UI_MAIN(object):
 			self.guif_set_label_error.show()
 			self.guif_set_label_error.setText("Date of Birth Invalid!")
 			self.guif_set_label_error.setStyleSheet("color: rgb(255, 0, 0);")
-		check = edufunctions.DBUpdate.DOB(newdob)
+		check = edufunctions.RDB.UpdateDOB(newdob)
 		if (check):
 			self.guif_set_label_error.show()
 			self.guif_set_label_error.setText("Date of Birth Changed")

@@ -8,16 +8,15 @@ import settings
 
 ''' TODO: MERGE ALL DB INTO ONE SINGLE CLASS '''
 
-class DB():
-	def __init__(self):
+''' RDB - Rowan's Database Interface - Deals with any communication between the app & MySQL'''
+class RDB():
+	def Connect():
 		global connection
 		global cursor
 		connection = pymysql.connect(host='localhost',user='root',password='root',db='sdd',charset='utf8mb4')
 		cursor = connection.cursor()
-		
-class LoginCheck():
-	def init(username,password):
-		DB()
+	def Login(username,password):
+		RDB.Connect()
 		#INIT VARIALBES DEFAULTs
 		userid = 0
 		user = ""
@@ -53,11 +52,9 @@ class LoginCheck():
 		else:
 			return False
 		connection.close()
-		
-class RegisterCheck():
-	def init(username,password,email,dob):
+	def Register(username,password,email,dob):
 		#CALLING DB CONNECT
-		DB()
+		RDB.Connect()
 		insertRequest = "INSERT INTO `users` (`username`, `password`, `email`, `dob`) VALUES (%s, %s, %s, %s)"
 		cursor.execute(insertRequest, (username, password, email, dob))
 		connection.commit()
@@ -73,21 +70,21 @@ class RegisterCheck():
 		else:
 			return False
 		connection.close()
-		
-class DBUpdate():
-	def Username(oldusername,username):
+	def UpdateUser(oldusername,username):
 		#CALL DB
-		DB()
+		RDB.Connect()
 		updateRequest = "UPDATE users SET username=%s WHERE username=%s"
 		cursor.execute(updateRequest, (username, oldusername))
 		connection.commit()
 		return True
 		connection.close()
+		settings.user = username
 		
-	def Password(oldpass, newpass):
-		DB()
+	def UpdatePassword(oldpass, newpass):
+		RDB.Connect()
 		username = settings.user
-		query = "SELECT * FROM USERS WHERE `USERNAME`=%s"
+		passw = ""
+		query = "SELECT * FROM USERS WHERE USERNAME=%s"
 		cursor.execute(query, (username))
 		results = cursor.fetchall()
 		for row in results:
@@ -102,8 +99,8 @@ class DBUpdate():
 			return False
 		connection.close()
 		
-	def Email(newemail):
-		DB()
+	def UpdateEmail(newemail):
+		RDB.Connect()
 		username = settings.user
 		updateRequest = "UPDATE users SET email=%s WHERE username=%s"
 		cursor.execute(updateRequest, (newemail, username))
@@ -112,8 +109,8 @@ class DBUpdate():
 		settings.email = newemail
 		return True
 	
-	def DOB(newdob):
-		DB()
+	def UpdateDOB(newdob):
+		RDB.Connect()
 		username = settings.user
 		updateRequest = "UPDATE users set dob=%s WHERE username=%s"
 		cursor.execute(updateRequest, (newdob, username))
@@ -121,10 +118,8 @@ class DBUpdate():
 		connection.close()
 		settings.dob = newdob
 		return True
-		
-class DbInfoContent():
-	def init(content_id):
-		DB()
+	def QueryInfoContent(content_id):
+		RDB.Connect()
 		#Define variables to ensure error is not given if DB does not find anything
 		info_name = ""
 		info_content = ""
