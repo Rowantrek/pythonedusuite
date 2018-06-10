@@ -1061,6 +1061,13 @@ class UI_MAIN(object):
 		self.guif_set_label_newdob.hide()
 		self.guif_set_edit_newdob.hide()
 		self.guif_set_btn_confirm_dob.hide()
+		#CAT MENU
+		self.guif_cm_btn_1.hide()
+		self.guif_cm_btn_2.hide()
+		self.guif_cm_btn_3.hide()
+		self.guif_cm_btn_4.hide()
+		self.guif_cm_btn_5.hide()
+		self.guif_cm_btn_6.hide()
 		#SUBCAT MENU
 		self.guif_scm_btn_1.hide()
 		self.guif_scm_btn_2.hide()
