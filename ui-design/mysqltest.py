@@ -1,14 +1,6 @@
-'''
-	Name: edufunctions.py
-	Author: Rowan Macdonald
-	Description: The master function handler for the application.
-'''
 import pymysql, sys, random, math, time, PyQt5
-import settings
 
-''' TODO: MERGE ALL DB INTO ONE SINGLE CLASS '''
 
-''' RDB - Rowan's Database Interface - Deals with any communication between the app & MySQL'''
 class RDB():
 	def Connect():
 		global connection
@@ -47,16 +39,16 @@ class RDB():
 			hist_scores = row [10]
 			admin_level = row[11]
 		if (username.lower() == user.lower() and password == passw):
-			settings.user = user
-			settings.email = email
-			settings.dob = dob
-			settings.maths_access = maths_access
-			settings.comput_access = comput_access
-			settings.hist_access = hist_access
-			settings.maths_scores = maths_scores
-			settings.compute_scores = compute_scores
-			settings.hist_scores = hist_scores
-			settings.admin_level = int(admin_level)
+			user = user
+			email = email
+			dob = dob
+			maths_access = maths_access
+			comput_access = comput_access
+			hist_access = hist_access
+			maths_scores = maths_scores
+			compute_scores = compute_scores
+			hist_scores = hist_scores
+			admin_level = int(admin_level)
 			return True
 		else:
 			return False
@@ -87,11 +79,11 @@ class RDB():
 		connection.commit()
 		return True
 		connection.close()
-		settings.user = username
+		user = username
 		
 	def UpdatePassword(oldpass, newpass):
 		RDB.Connect()
-		username = settings.user
+		username = user
 		passw = ""
 		query = "SELECT * FROM USERS WHERE USERNAME=%s"
 		cursor.execute(query, (username))
@@ -110,22 +102,22 @@ class RDB():
 		
 	def UpdateEmail(newemail):
 		RDB.Connect()
-		username = settings.user
+		username = user
 		updateRequest = "UPDATE users SET email=%s WHERE username=%s"
 		cursor.execute(updateRequest, (newemail, username))
 		connection.commit()
 		connection.close()
-		settings.email = newemail
+		email = newemail
 		return True
 	
 	def UpdateDOB(newdob):
 		RDB.Connect()
-		username = settings.user
+		username = user
 		updateRequest = "UPDATE users set dob=%s WHERE username=%s"
 		cursor.execute(updateRequest, (newdob, username))
 		connection.commit()
 		connection.close()
-		settings.dob = newdob
+		dob = newdob
 		return True
 	def QueryInfoContent(content_id):
 		RDB.Connect()
@@ -138,28 +130,28 @@ class RDB():
 		for row in results:
 			info_name = row[1]
 			info_content = row[2]
-		settings.info_content[info_name] = info_content
+		info_content[info_name] = info_content
 		connection.close()
 		
 	def QueryScores():
 		RDB.Connect()
-		username = settings.user
-		maths_scores = settings.maths_scores
-		compute_scores = settings.compute_scores
-		hist_scores = settings.hist_scores
+		username = user
+		maths_scores = maths_scores
+		compute_scores = compute_scores
+		hist_scores = hist_scores
 		scoreQuery = "SELECT * FROM USERS WHERE username = %s"
 		cursor.execute(scoreQuery, (username))
 		results = cursor.fetchall()
 		for row in results:
-			settings.maths_scores = row[8]
-			settings.compute_scores = row[9]
-			settings.hist_scores = row[10]
+			maths_scores = row[8]
+			compute_scores = row[9]
+			hist_scores = row[10]
 		connection.close()
 	
 	def UpdateScores():
-		math = settings.maths_scores
-		compute = settings.compute_scores
-		hist = settings.hist_scores
+		math = maths_scores
+		compute = compute_scores
+		hist = hist_scores
 		RDB.Connect()
 		
 		connection.close()
@@ -172,30 +164,50 @@ class RDB():
 		cursor.execute(quizQuery, (quiz))
 		results = cursor.fetchall()
 		for row in results:
-			settings.quizid = row[0]
-			settings.quiztype = row[1]
-			settings.totalquest = row[2]
+			quizid = row[0]
+			quiztype = row[1]
+			totalquest = row[2]
 			
-		if (settings.quiztype == "normal"):
+		if (quiztype == "normal"):
 			for row in results:
-				questions = row[3]
+				questions = list(row[3])
 				answers = row[4]
+				print(questions)
 			for _i in questions:
-				settings.quizquestions[que] = _i
+				quizquestions[que] = _i
 				que += 1
 			for _i in answers:
-				settings.quizanswers[ans] = _i
+				quizanswers[ans] = _i
 				ans += 1
-		if (settings.quiztype == "multi"):
+		if (quiztype == "multi"):
 			for row in results:
 				questions = row[3]
 				answers = row[4]
 				options = list(row[5])
 			for _i in questions:
-				settings.quizquestion[que] = _i
+				quizquestion[que] = _i
 				que += 1
 	
 	def Sync():
 		RDB.Connect()
 		
-	
+quizquestions = {}
+quizanswers = {}
+
+quiz1 = "maths1_1"
+RDB.GetQuestions(quiz1)
+
+myq = [1,2,3,4,5,6,7,8,9,10]
+
+q = random.sample(myq, 1)
+
+print(quizquestions)
+myqs = ["HJELLO","HELLO2","QUESTION3","QUESTION4"]
+quizid2 = "maths1_1"
+
+RDB.Connect()
+sql = "UPDATE quiz SET questions=%s WHERE quizid=%s"
+cursor.execute(sql, (myqs, quizid2))
+connection.commit()
+
+

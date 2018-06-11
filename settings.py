@@ -25,8 +25,27 @@ def init():
 	comput_access = 0
 	global hist_access
 	hist_access = 0
+	global maths_scores
+	maths_scores = list([0,0,0,0,0,0])
+	global compute_scores
+	compute_scores = list([0,0,0,0,0,0])
+	global hist_scores
+	hist_scores = list([0,0,0,0,0,0])
 	global admin_level
 	admin_level = 0
+	global synctime
+	synctime = 120
+	''' QUESTIONS '''
+	global quizid
+	quizid = ""
+	global quiztype
+	quiztype = ""
+	global totalquest
+	totalquest = 0
+	global quizquestions
+	quizquestions = { "d":"d" }
+	global quizanswers
+	quizanswers = { "d":"d" }
 	'''
 	INFO INIT
 	'''
@@ -36,4 +55,6 @@ def init():
 	info_vars = ["additsub", "multdiv", "primecomp"]
 	for _i in info_vars:
 		edufunctions.RDB.QueryInfoContent(_i)
-	''''''
+	'''
+	SYNC INIT
+	'''
