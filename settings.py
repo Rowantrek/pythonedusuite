@@ -43,9 +43,11 @@ def init():
 	global totalquest
 	totalquest = 0
 	global quizquestions
-	quizquestions = { "d":"d" }
+	quizquestions = []
 	global quizanswers
-	quizanswers = { "d":"d" }
+	quizanswers = []
+	global quizname
+	quizname = ""
 	'''
 	INFO INIT
 	'''

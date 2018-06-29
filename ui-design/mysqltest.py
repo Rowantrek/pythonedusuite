@@ -170,44 +170,26 @@ class RDB():
 			
 		if (quiztype == "normal"):
 			for row in results:
-				questions = list(row[3])
-				answers = row[4]
-				print(questions)
-			for _i in questions:
-				quizquestions[que] = _i
-				que += 1
-			for _i in answers:
-				quizanswers[ans] = _i
-				ans += 1
-		if (quiztype == "multi"):
-			for row in results:
 				questions = row[3]
 				answers = row[4]
-				options = list(row[5])
-			for _i in questions:
-				quizquestion[que] = _i
-				que += 1
+				quizname = row[5]
+			quizquestions = questions.split(",")
+			quizanswers = answers.split(",")
+			print(quizquestions)
+			print(quizanswers)
+			quizname = quizname
+		if (quiztype == "multi"):
+			pass
 	
 	def Sync():
 		RDB.Connect()
 		
-quizquestions = {}
-quizanswers = {}
+global quizquestions
+quizquestions = []
+global quizanswers 
+quizanswers = []
 
 quiz1 = "maths1_1"
 RDB.GetQuestions(quiz1)
-
-myq = [1,2,3,4,5,6,7,8,9,10]
-
-q = random.sample(myq, 1)
-
-print(quizquestions)
-myqs = ["HJELLO","HELLO2","QUESTION3","QUESTION4"]
-quizid2 = "maths1_1"
-
-RDB.Connect()
-sql = "UPDATE quiz SET questions=%s WHERE quizid=%s"
-cursor.execute(sql, (myqs, quizid2))
-connection.commit()
 
 

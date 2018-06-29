@@ -180,20 +180,12 @@ class RDB():
 			for row in results:
 				questions = row[3]
 				answers = row[4]
-			for _i in questions:
-				settings.quizquestions[que] = _i
-				que += 1
-			for _i in answers:
-				settings.quizanswers[ans] = _i
-				ans += 1
+				quizname = row[5]
+			settings.quizquestions = questions.split(",")
+			settings.quizanswers = answers.split(",")
+			settings.quizname = quizname
 		if (settings.quiztype == "multi"):
-			for row in results:
-				questions = row[3]
-				answers = row[4]
-				options = list(row[5])
-			for _i in questions:
-				settings.quizquestion[que] = _i
-				que += 1
+			pass
 	
 	def Sync():
 		RDB.Connect()
