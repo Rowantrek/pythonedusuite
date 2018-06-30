@@ -48,6 +48,8 @@ def init():
 	quizanswers = []
 	global quizname
 	quizname = ""
+	global questionremain
+	questionremain = 10
 	'''
 	INFO INIT
 	'''

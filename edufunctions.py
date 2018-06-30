@@ -3,7 +3,8 @@
 	Author: Rowan Macdonald
 	Description: The master function handler for the application.
 '''
-import pymysql, sys, random, math, time, PyQt5
+import pymysql, sys, random, math, time
+from PyQt5 import QtCore, QtGui, QtWidgets, uic, QtWebKitWidgets
 import settings
 
 ''' TODO: MERGE ALL DB INTO ONE SINGLE CLASS '''

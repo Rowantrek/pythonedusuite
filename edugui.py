@@ -1243,6 +1243,113 @@ class UI_MAIN(object):
 		self.gridLayout_21.addItem(spacerItem96, 2, 1, 1, 1)
 		self.guif_mm_stacker.addWidget(self.guif_qcheck)
 		'''
+		RESULTS GUI CODE | ADDED 30TH JUNE 2018 | LAST UPDATED 1:12PM 30/6/18
+		'''
+		self.qres = QtWidgets.QWidget()
+		self.qres.setObjectName("qres")
+		self.gridLayout_23 = QtWidgets.QGridLayout(self.qres)
+		self.gridLayout_23.setContentsMargins(0, 0, 0, 0)
+		self.gridLayout_23.setObjectName("gridLayout_23")
+		spacerItem97 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+		self.gridLayout_23.addItem(spacerItem97, 0, 1, 1, 1)
+		spacerItem98 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.gridLayout_23.addItem(spacerItem98, 1, 0, 1, 1)
+		self.gridLayout_22 = QtWidgets.QGridLayout()
+		self.gridLayout_22.setObjectName("gridLayout_22")
+		self.horizontalLayout_21 = QtWidgets.QHBoxLayout()
+		self.horizontalLayout_21.setObjectName("horizontalLayout_21")
+		spacerItem99 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_21.addItem(spacerItem99)
+		self.guif_qres_var_score = QtWidgets.QLabel(self.qres)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		self.guif_qres_var_score.setFont(font)
+		self.guif_qres_var_score.setAlignment(QtCore.Qt.AlignCenter)		
+		self.guif_qres_var_score.setObjectName("guif_qres_var_score")
+		self.horizontalLayout_21.addWidget(self.guif_qres_var_score)
+		spacerItem100 = QtWidgets.QSpacerItem(15, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_21.addItem(spacerItem100)
+		self.guif_qres_label_outof = QtWidgets.QLabel(self.qres)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		self.guif_qres_label_outof.setFont(font)
+		self.guif_qres_label_outof.setAlignment(QtCore.Qt.AlignCenter)
+		self.guif_qres_label_outof.setObjectName("guif_qres_label_outof")
+		self.horizontalLayout_21.addWidget(self.guif_qres_label_outof)
+		spacerItem101 = QtWidgets.QSpacerItem(15, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_21.addItem(spacerItem101)
+		self.guif_qres_var_maxscore = QtWidgets.QLabel(self.qres)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		self.guif_qres_var_maxscore.setFont(font)
+		self.guif_qres_var_maxscore.setObjectName("guif_qres_var_maxscore")
+		self.horizontalLayout_21.addWidget(self.guif_qres_var_maxscore)
+		spacerItem102 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_21.addItem(spacerItem102)
+		self.gridLayout_22.addLayout(self.horizontalLayout_21, 6, 0, 1, 1)
+		self.guif_qres_var_name = QtWidgets.QLabel(self.qres)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		font.setBold(True)
+		font.setWeight(75)
+		self.guif_qres_var_name.setFont(font)
+		self.guif_qres_var_name.setAlignment(QtCore.Qt.AlignCenter)
+		self.guif_qres_var_name.setObjectName("guif_qres_var_name")
+		self.gridLayout_22.addWidget(self.guif_qres_var_name, 2, 0, 1, 1)
+		spacerItem103 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_22.addItem(spacerItem103, 7, 0, 1, 1)
+		spacerItem104 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_22.addItem(spacerItem104, 3, 0, 1, 1)
+		self.guif_qres_label_yougot = QtWidgets.QLabel(self.qres)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		self.guif_qres_label_yougot.setFont(font)
+		self.guif_qres_label_yougot.setAlignment(QtCore.Qt.AlignCenter)
+		self.guif_qres_label_yougot.setObjectName("guif_qres_label_yougot")
+		self.gridLayout_22.addWidget(self.guif_qres_label_yougot, 4, 0, 1, 1)
+		self.guif_qres_title = QtWidgets.QLabel(self.qres)
+		font = QtGui.QFont()
+		font.setPointSize(60)
+		font.setBold(True)
+		font.setItalic(True)
+		font.setWeight(75)
+		self.guif_qres_title.setFont(font)
+		self.guif_qres_title.setAlignment(QtCore.Qt.AlignCenter)
+		self.guif_qres_title.setObjectName("guif_qres_title")
+		self.gridLayout_22.addWidget(self.guif_qres_title, 0, 0, 1, 1)
+		spacerItem105 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_22.addItem(spacerItem105, 1, 0, 1, 1)
+		spacerItem106 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_22.addItem(spacerItem106, 5, 0, 1, 1)
+		self.horizontalLayout_22 = QtWidgets.QHBoxLayout()
+		self.horizontalLayout_22.setContentsMargins(-1, -1, -1, 0)
+		self.horizontalLayout_22.setObjectName("horizontalLayout_22")
+		spacerItem107 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_22.addItem(spacerItem107)
+		self.guif_qres_btn_back = QtWidgets.QPushButton(self.qres)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guif_qres_btn_back.setFont(font)
+		self.guif_qres_btn_back.setObjectName("guif_qres_btn_back")
+		self.horizontalLayout_22.addWidget(self.guif_qres_btn_back)
+		spacerItem108 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_22.addItem(spacerItem108)
+		self.guif_qres_btn_retry = QtWidgets.QPushButton(self.qres)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guif_qres_btn_retry.setFont(font)
+		self.guif_qres_btn_retry.setObjectName("guif_qres_btn_retry")
+		self.horizontalLayout_22.addWidget(self.guif_qres_btn_retry)
+		spacerItem109 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_22.addItem(spacerItem109)
+		self.gridLayout_22.addLayout(self.horizontalLayout_22, 8, 0, 1, 1)
+		self.gridLayout_23.addLayout(self.gridLayout_22, 1, 1, 1, 1)
+		spacerItem110 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+		self.gridLayout_23.addItem(spacerItem110, 2, 1, 1, 1)
+		spacerItem111 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.gridLayout_23.addItem(spacerItem111, 1, 2, 1, 1)
+		self.guif_mm_stacker.addWidget(self.qres)
+		'''
 		FINAL GUI CODE | ADDS WIDGETS TO STACKER & SETS STACKER TO MAIN WID TO CENTRAL WIDGET DISPLAY
 		'''
 		self.gridLayout_3.addWidget(self.guif_mm_stacker, 0, 0, 1, 1)
@@ -1334,6 +1441,15 @@ class UI_MAIN(object):
 		self.guif_qcheck_label_incorrect.setText(_translate("guif_main", "Your answer was incorrect"))
 		self.guif_qcheck_btn_back.setText(_translate("guif_main", "Back"))
 		self.guif_qcheck_btn_next.setText(_translate("guif_main", "Next"))
+		self.guif_qres_var_score.setText(_translate("guif_main", "Score"))
+		self.guif_qres_label_outof.setText(_translate("guif_main", "Out of"))
+		self.guif_qres_var_maxscore.setText(_translate("guif_main", "MAX SCORE"))
+		self.guif_qres_var_name.setText(_translate("guif_main", "Quiz Name"))
+		self.guif_qres_label_yougot.setText(_translate("guif_main", "You have completed the quiz! You got..."))
+		self.guif_qres_title.setText(_translate("guif_main", "EduSuite"))
+		self.guif_qres_btn_back.setText(_translate("guif_main", "Back"))
+		self.guif_qres_btn_retry.setText(_translate("guif_main", "Re-attempt"))
+
 	'''
 		GUI CODE END | MENU NAV & FUNCTIONS START
 	'''
@@ -1886,16 +2002,48 @@ class UI_MAIN(object):
 		settings.quizanswers = {}
 		quiz = self.QuizMenu
 		edufunctions.RDB.GetQuestions(quiz)
+		self.FirstQuestion = True
 		self.questionremain = 10
-		self.questionnum = random.randrange(-1, self.questionremain)
 		self.score = 0
 		self.totalanswered = 0
-		self.QuizQuestion()
+		self.QAnswer = False
+		self.correctbool = False
+		#INIT VARS
+		self.quizanswers = settings.quizanswers
+		self.quizquestions = settings.quizquestions
+		self.totalquest = settings.totalquest
+		self.quiztype = settings.quiztype
+		self.quizid = settings.quizid
+		self.quizname = settings.quizname
+		#EXEC FINISH
+		self.InitQuizQuestion()
 
+
+	def InitQuizQuestion(self):
+		#ENSURES Answer isn't deleted before they answer the 1st questio
+		if (self.FirstQuestion == False and self.QAnswer == True):
+			del self.quizanswers[self.questionnum]
+			del self.quizquestions[self.questionnum]
+			self.questionremain = self.questionremain - 1
+			self.totalanswered = self.totalanswered + 1
+			self.questionnum += 1
+			self.QAnswer = False
+			if (self.correctbool == True):
+				self.score = self.score + 1
+				self.correctbool = False
+		else:
+			self.FirstQuestion = False
+			self.questionnum = 0
+			self.QuizQuestion()
 		
+		#CHECKS TO SEE IF QUIZ IS FINISHED
+		if (self.totalanswered == self.totalquest):
+			self.QuizFinish()
+		else:
+			self.QuizQuestion()
+			
 	def QuizQuestion(self):
 		#DELETE PREVIOUS CORRECT ANSWER FROM LIST
-		settings.quizanswers[self.questionnum] = ""
 		_translate = QtCore.QCoreApplication.translate
 		#INIT HIDE VARS
 		self.guif_qquest_btn_mult1.hide()
@@ -1907,49 +2055,65 @@ class UI_MAIN(object):
 		self.guif_qquest_input_answer.setText("")
 		self.guif_qquest_btn_submit.show()
 		self.guif_qquest_var_question.show()
-		self.guif_qquest_btn_submit.clicked.connect(self.QuizAnswer)
 		
-		self.questionnum = random.randrange(-1, self.questionremain)
-		if (self.totalanswered < settings.totalquest):
-			if (settings.quiztype == "normal"):
-				self.guif_qquest_label_answer.show()
-				self.guif_qquest_input_answer.show()
-				self.guif_qquest_var_question.setText(_translate("guif_main", settings.quizquestions[self.questionnum]))
-				settings.quizquestions[self.questionnum] = ""
-				self.questionremain -= 1
-				self.totalanswered += 1
-			elif (settings.quiztype == "multi"):
-				pass
+		#self.questionnum = random.randrange(-1, self.questionremain)
+		if (self.quiztype == "normal"):
+			self.guif_qquest_label_answer.show()
+			self.guif_qquest_input_answer.show()
+			self.guif_qquest_var_question.setText(_translate("guif_main", self.quizquestions[self.questionnum] + " " + str(self.quizquestions) + " " + str(self.questionremain) + " " + str(self.score)))
+		elif (settings.quiztype == "multi"):
+			pass
 				
+		self.guif_qquest_btn_submit.clicked.connect(self.QuizAnswer)
 		self.guif_mm_stacker.setCurrentIndex(8)
 		
 	def QuizAnswer(self):
 		MathsQuizes = ["maths1_1"]
 		_translate = QtCore.QCoreApplication.translate
 		#INIT HIDE VARS
-		self.guif_qcheck_btn_back.hide()
+		self.guif_qcheck_btn_back.show()
+		self.guif_qcheck_btn_back.setText(_translate("guif_main", "Exit"))
+		self.guif_qcheck_btn_back.clicked.connect(self.InitSub)
+		self.guif_qcheck_btn_next.clicked.connect(self.InitQuizQuestion)
 		self.guif_qcheck_label_correct.hide()
 		self.guif_qcheck_label_incorrect.hide()
-		self.guif_qcheck_btn_next.clicked.connect(self.QuizQuestion)
-		self.guif_qcheck_var_quizname.setText(_translate("guif_main", settings.quizname))
+		self.guif_qcheck_var_quizname.setText(_translate("guif_main", self.quizname))
 		ansinput = str(self.guif_qquest_input_answer.text())
-		correctanswer = settings.quizanswers[self.questionnum]
-		if (settings.quiztype == "normal"):
+		correctanswer = self.quizanswers[self.questionnum]
+		if (self.quiztype == "normal"):
 			#TEST TO SEE IF MATHS TEST. IF TEST IS MATHS THE VARIABLE ASSIGNED WILL NEED TO BE INTEGER AND 100% CORRECT
-			if (settings.quizid in MathsQuizes):
+			if (self.quizid in MathsQuizes):
 				if (ansinput == str(correctanswer)):
 					self.guif_qcheck_label_correct.show()
+					self.correctbool = True
 				else:
 					self.guif_qcheck_label_incorrect.show()
-					self.guif_qcheck_label_incorrect.setText(_translate("guif_main", "Your answer was incorrect" + "The Correct answer was" + correctanswer))
+					self.guif_qcheck_label_incorrect.setText(_translate("guif_main", "Your answer was incorrect" + " The Correct answer was " + correctanswer))
 			#FOR NORMAL NON MATHS TESTS
 			else:
 				if (correctanswer in ansinput):
 					self.guif_qcheck_label_correct.show()
 				else:
 					self.guif_qcheck_label_incorrect.show()
-				
+		#FOR MULTI CHOICE QUIZES
+		elif (self.quiztype == "multi"):
+			pass
+		
+		self.QAnswer = True
 		self.guif_mm_stacker.setCurrentIndex(9)
+		
+	def QuizFinish(self):
+		_translate = QtCore.QCoreApplication.translate
+		self.guif_qres_var_score.setText(_translate("guif_main", self.score))
+		self.guif_qres_label_outof.setText(_translate("guif_main", "Out of"))
+		self.guif_qres_var_maxscore.setText(_translate("guif_main", self.totalquest))
+		self.guif_qres_var_name.setText(_translate("guif_main", self.quizname))
+		self.guif_qres_btn_back.setText(_translate("guif_main", "Back"))
+		self.guif_qres_btn_back.clicked.connect(self.InitSub)
+		self.guif_qres_btn_retry.setText(_translate("guif_main", "Re-attempt"))
+		self.guif_qres_Btn_retry.clicked.connnect(self.InitQuiz)
+		
+		
 		
 
 
