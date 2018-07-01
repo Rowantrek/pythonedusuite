@@ -149,13 +149,21 @@ class RDB():
 				
 	def QuizImages(quiz):
 		RDB.Connect()
-		status = 0
 		query = "SELECT * FROM QUIZ WHERE quizid = %s"
 		cursor.execute(query, (quiz))
 		results = cursor.fetchall()
 		for row in results:
 			ret = row[7]
 		return ret
+	
+	def CatImages(menu):
+		RDB.Connect()
+		query = "SELECT * FROM INFO WHERE idinfo = %s"
+		cursor.execute(query, (menu))
+		results = cursor.fetchall()
+		for row in results:
+			image = row[4]
+		return image
 
 		
 	
@@ -271,13 +279,35 @@ class gui():
 		info_name = ""
 		info_content = ""
 		infotype = ""
+		#RETRIEVES DATA FROM THE DB
 		info_name, info_content, infotype = RDB.QueryInfoContent(menu)
-		#7 - GET IMAGES FOR THING
+		#7 - GET IMAGES FOR THING, DEFINES IMAGES IN DICTIONARY
 		quizimages = {"one":"","two":"","three":""}
 		quizimages["one"] = RDB.QuizImages(menu + "_1")
 		quizimages["two"] = RDB.QuizImages(menu + "_2")
 		quizimages["three"] = RDB.QuizImages(menu + "_3")
+		connection.close()
 		return info_name, info_content, infotype, quizimages
+	
+	def catmenu(menu):
+		#CONTROL FLOW TO DETERMINE CAT_TITLE
+		if (menu == "maths"):
+			cat_title = "Mathematics"
+		elif (menu == "compute"):
+			cat_title = "Computing"
+		elif (menu == "hist"):
+			cat_title = "History"
+		else:
+			cat_title = "ERROR RETREIVING DATA"
+		#PROCESS FOR GETTING INFO_IMAGES
+		info_images = {"one":"","two":"","three":""}
+		info_images["one"] = RDB.CatImages(menu + "1")
+		info_images["two"] = RDB.CatImages(menu + "2")
+		info_images["three"] = RDB.CatImages(menu + "3")
+		connection.close()
+		return cat_title, info_images
+		
+		
 	
 		
 		
