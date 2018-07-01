@@ -1530,6 +1530,8 @@ class UI_MAIN(object):
 		self.guif_scm_btn_4.hide()
 		self.guif_scm_btn_5.hide()
 		self.guif_scm_btn_6.hide()
+		self.guif_scm_webview.setUrl(QtCore.QUrl(""))
+		self.guif_scm_info.setText("")
 		#QUIZ MENU
 		self.guif_qmenu_var_highscore.setText(_translate("guif_main", ""))
 		''' RESET WIDGETS '''
@@ -1746,12 +1748,15 @@ class UI_MAIN(object):
 			button1ico = QtGui.QIcon()
 			button1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 			self.guif_cm_btn_1.setIcon(button1ico)
+			self.guif_cm_btn_1.clicked.connect(self.Comput1)
 			button2ico = QtGui.QIcon()
 			button2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 			self.guif_cm_btn_2.setIcon(button2ico)
+			self.guif_cm_btn_2.clicked.connect(self.Comput2)
 			button3ico = QtGui.QIcon()
 			button3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 			self.guif_cm_btn_3.setIcon(button3ico)
+			self.guif_cm_btn_3.clicked.connect(self.Comput3)
 			button4ico = QtGui.QIcon()
 			button4ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 			self.guif_cm_btn_4.setIcon(button4ico)
@@ -1807,95 +1812,43 @@ class UI_MAIN(object):
 		self.InitRsc()
 		
 	def BackCatMenu(self):
-		if (self.menu == "maths"):
-			self.MathsMenu()
-		elif (self.menu == "computer"):
-			self.ComputeMenu()
-		elif (self.menu == "history"):
-			self.HistoryMenu()
-		else:
-			self.WelcomeMenu()
+		self.InitRsc()
 	
 	''' SUB CATEGORY MENU '''
 	def InitSub(self):
 		self.init()
 		_translate = QtCore.QCoreApplication.translate
-		''' MATHS '''
-		educfunctions.gui.subcatmenu(self.subcat)
-		#ADDITION + SUBTRACTION
-		if (self.subcat == "maths1"):
-			self.info = settings.info_content["additsub"]
-			self.guif_scm_label_subcat.setText(_translate("guif_main", "Addition & Subtraction"))
-			self.guif_scm_info.setText(self.info)
+		''' GRAB CONTENT '''
+		info_name, info_content, infotype, quizimages = edufunctions.gui.subcatmenu(self.subcat)
+		self.guif_scm_label_subcat.setText(_translate('guif_main', info_name))
+		if (infotype == "normal"):
+			self.guif_scm_info.setText(info_content)
 			self.guif_scm_info.show()
-			self.guif_scm_btn_1.show()
-			scm1ico = QtGui.QIcon()
-			scm1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_1.setIcon(scm1ico)
-			self.guif_scm_btn_2.show()
-			scm2ico = QtGui.QIcon()
-			scm2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_2.setIcon(scm2ico)
-			self.guif_scm_btn_3.show()
-			scm3ico = QtGui.QIcon()
-			scm3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_3.setIcon(scm3ico)
-		#MULTIPLICATION & DIVISION
-		if (self.subcat == "maths2"):
-			self.info = settings.info_content["multdiv"]
-			self.guif_scm_label_subcat.setText(_translate("guif_main", "Multiplication & Division"))
-			self.guif_scm_info.setText(self.info)
-			self.guif_scm_info.show()
-			self.guif_scm_btn_1.show()
-			scm1ico = QtGui.QIcon()
-			scm1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_1.setIcon(scm1ico)
-			self.guif_scm_btn_2.show()
-			scm2ico = QtGui.QIcon()
-			scm2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_2.setIcon(scm2ico)
-			self.guif_scm_btn_3.show()
-			scm3ico = QtGui.QIcon()
-			scm3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_3.setIcon(scm3ico)
-		#PRIME & COMPOSITION
-		if (self.subcat == "maths3"):
-			self.info = settings.info_content["primecomp"]
-			self.guif_scm_label_subcat.setText(_translate("guif_main", "Prime & Composite Numbers"))
-			self.guif_scm_info.setText(self.info)
-			self.guif_scm_info.show()
-			self.guif_scm_btn_1.show()
-			scm1ico = QtGui.QIcon()
-			scm1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_1.setIcon(scm1ico)
-			self.guif_scm_btn_2.show()
-			scm2ico = QtGui.QIcon()
-			scm2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_2.setIcon(scm2ico)
-			self.guif_scm_btn_3.show()
-			scm3ico = QtGui.QIcon()
-			scm3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_3.setIcon(scm3ico)
-		''' COMPUTING '''
-		if (self.subcat == "comput1"):
-			pass
-		''' HISTORY '''
-		if (self.subcat == "hist1"):
-			self.guif_scm_label_subcat.setText(_translate("guif_main", "World War Two Basics"))
+		elif (infotype == "video"):
 			self.guif_scm_webview.show()
-			self.guif_scm_webview.setUrl(QtCore.QUrl("http://nrgnetwork.org/history1.html"))
-			self.guif_scm_btn_1.show()
-			scm1ico = QtGui.QIcon()
-			scm1ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_1.setIcon(scm1ico)
-			self.guif_scm_btn_2.show()
-			scm2ico = QtGui.QIcon()
-			scm2ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_2.setIcon(scm2ico)
-			self.guif_scm_btn_3.show()
-			scm3ico = QtGui.QIcon()
-			scm3ico.addPixmap(QtGui.QPixmap(":/general/img/placeholder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.guif_scm_btn_3.setIcon(scm3ico)
+			self.guif_scm_webview.setUrl(QtCore.QUrl(info_content))
+		else:
+			pass
+		#BUTTONS SHOW 
+		self.guif_scm_btn_1.show()
+		self.guif_scm_btn_2.show()
+		self.guif_scm_btn_3.show()
+		#BUTTON SIGNALS
+		self.guif_scm_btn_1.clicked.connect(self.QuizButton1)
+		self.guif_scm_btn_2.clicked.connect(self.QuizButton2)
+		self.guif_scm_btn_3.clicked.connect(self.QuizButton3)
+		#BUTTON STYLING
+		#:/general/img/placeholder.png
+		scm1ico = QtGui.QIcon()
+		scm1ico.addPixmap(QtGui.QPixmap(quizimages["one"]), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		self.guif_scm_btn_1.setIcon(scm1ico)
+		scm2ico = QtGui.QIcon()
+		scm2ico.addPixmap(QtGui.QPixmap(quizimages["two"]), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		self.guif_scm_btn_2.setIcon(scm2ico)
+		scm3ico = QtGui.QIcon()
+		scm3ico.addPixmap(QtGui.QPixmap(quizimages["three"]), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		self.guif_scm_btn_3.setIcon(scm3ico)
+		#SETS PAGE INDEX TO SUB CAT MENU PAGE
 		self.guif_mm_stacker.setCurrentIndex(6)
 			
 	''' CALLERS FOR SUB CAT MENU '''
@@ -1912,15 +1865,15 @@ class UI_MAIN(object):
 		self.InitSub()
 		
 	def Comput1(self):
-		self.subcat = "comput1"
+		self.subcat = "compute1"
 		self.InitSub()
 		
 	def Comput2(self):
-		self.subcat = "comput2"
+		self.subcat = "compute2"
 		self.InitSub()
 		
 	def Comput3(self):
-		self.subcat = "comput3"
+		self.subcat = "compute3"
 		self.InitSub()
 		
 	def History1(self):
