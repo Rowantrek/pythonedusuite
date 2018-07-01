@@ -6,6 +6,7 @@
 import pymysql, sys, random, math, time
 from PyQt5 import QtCore, QtGui, QtWidgets, uic, QtWebKitWidgets
 import settings
+import threading
 
 ''' TODO: MERGE ALL DB INTO ONE SINGLE CLASS '''
 
@@ -16,6 +17,8 @@ class RDB():
 		global cursor
 		connection = pymysql.connect(host='localhost',user='root',password='root',db='sdd',charset='utf8mb4')
 		cursor = connection.cursor()
+	def CloseConn():
+		connection.close()
 	def Login(username,password):
 		RDB.Connect()
 		#INIT VARIALBES DEFAULTs
@@ -133,15 +136,41 @@ class RDB():
 		#Define variables to ensure error is not given if DB does not find anything
 		info_name = ""
 		info_content = ""
-		contentQuery = "SELECT * FROM INFO WHERE info_name = %s"
+		contentQuery = "SELECT * FROM INFO WHERE idinfo = %s"
 		cursor.execute(contentQuery, (content_id))
 		results = cursor.fetchall()
 		for row in results:
-			info_name = row[1]
-			info_content = row[2]
-		settings.info_content[info_name] = info_content
+			info_name = row[4]
+			info_content = row[5]
 		connection.close()
+		return info_name, info_content
 		
+	def QueryCatMenu(menu):
+		RDB.Connect()
+		status = 0
+		image = ""
+		query = "SELECT * FROM INFO WHERE idinfo = %s"
+		cursor.execute(query, (menu))
+		results = cursor.fetchall()
+		for row in results:
+			status = row[1]
+			image = row[3]
+			settings.infotype[menu] = row[2]
+			if (status == 1):
+				settings.activeinfo[menu] = status
+				
+				
+	def ActiveQuiz(quiz):
+		RDB.Connect()
+		status = 0
+		query = "SELECT * FROM QUIZ WHERE quizid = %s"
+		cursor.execute(query, (quiz))
+		results = cursor.fetchall()
+		for row in results:
+			settings.quizactive[quiz] = row[7]
+
+		
+	
 	def QueryScores():
 		RDB.Connect()
 		username = settings.user
@@ -156,6 +185,9 @@ class RDB():
 			settings.compute_scores = row[9]
 			settings.hist_scores = row[10]
 		connection.close()
+		settings.maths_scores = settings.maths_scores.split(",")
+		settings.compute_scores = settings.compute_scores.split(",")
+		settings.hist_scores = settings.hist_scores.split(",")
 	
 	def UpdateScores():
 		math = settings.maths_scores
@@ -190,5 +222,65 @@ class RDB():
 	
 	def Sync():
 		RDB.Connect()
+		
+class QuizHandler():
+	def InitQuiz(quizname):
+		RDB.QueryScores()
+		#CHECK WHAT QUIZ SO WE CAN LOAD THE STUFF
+		quizname = quizname
+		settings.quizid = ""
+		settings.quiztype = ""
+		settings.totalquest = 0
+		settings.score = 0
+		settings.quizquestions = []
+		settings.quizanswers = []
+		settings.totalanswered = 0
+		settings.questnum = 0
+		FirstQuestion = True
+		RDB.GetQuestions(quizname)
+		settings.questionremain = settings.totalquest
+		#return FirstQuestion
+		
+	def Question():
+		finished = False
+		question = ""
+		#settings.questnum = random.randrange(-1, settings.questionremain)
+		if (settings.questionremain == 0):
+			finished = True
+		else:
+			if (settings.quiztype == "normal"):
+				quiztype = "normal"
+				question = settings.quizquestions[settings.questnum]
+		
+		return question, finished
+		
+	def Answer(ansinput):
+		correctanswer = settings.quizanswers[settings.questnum]
+		ansinput = ansinput
+		#CHECK TYPE OF QUIZ
+		if (settings.quiztype == "normal"):
+			if (str(ansinput) == str(correctanswer)):
+				correct = True
+				settings.score += 1
+			else:
+				correct = False
+		else:
+			correct = False
+		
+		settings.questionremain -= 1
+		settings.totalanswered += 1
+		settings.questnum = settings.questnum + 1
+		return correct			
+
+	def Finished():
+		score = settings.score
+		maxscore = settings.totalquest
+		return score,maxscore
+		
+		
+		
+		
+	
+	
 		
 	
