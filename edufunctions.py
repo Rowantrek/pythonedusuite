@@ -153,7 +153,7 @@ class RDB():
 		cursor.execute(query, (quiz))
 		results = cursor.fetchall()
 		for row in results:
-			ret = row[7]
+			ret = row[10]
 		return ret
 	
 	def CatImages(menu):
@@ -194,34 +194,44 @@ class RDB():
 		connection.close()
 	
 	def GetQuestions(quiz):
-		que = 1
-		ans = 1
 		RDB.Connect()
 		quizQuery = "SELECT * FROM QUIZ WHERE quizid = %s"
 		cursor.execute(quizQuery, (quiz))
 		results = cursor.fetchall()
 		for row in results:
 			settings.quizid = row[0]
-			settings.quiztype = row[1]
-			settings.totalquest = row[2]
+			settings.quiztype = row[2]
+			settings.totalquest = row[3]
+			settings.quizname = row[1]
 			
 		if (settings.quiztype == "normal"):
 			for row in results:
-				questions = row[3]
-				answers = row[4]
-				quizname = row[5]
+				questions = row[4]
+				answers = row[9]
 			settings.quizquestions = questions.split(",")
 			settings.quizanswers = answers.split(",")
-			settings.quizname = quizname
-		if (settings.quiztype == "multi"):
-			pass
+		elif (settings.quiztype == "choice"):
+			for row in results:
+				questions = row[4]
+				answers = row[9]
+				choicea = row[5]
+				choiceb = row[6]
+				choicec = row[7]
+				choiced = row[8]
+
+			settings.quizquestions = questions.split(",")
+			settings.quizanswers = answers.split(",")
+			settings.choices = {}
+			settings.choices["A"] = choicea.split(",")
+			settings.choices["B"] = choiceb.split(",")
+			settings.choices["C"] = choicec.split(",")
+			settings.choices["D"] = choiced.split(",")
 	
 	def Sync():
 		RDB.Connect()
 		
 class QuizHandler():
 	def InitQuiz(quizname):
-		RDB.QueryScores()
 		#CHECK WHAT QUIZ SO WE CAN LOAD THE STUFF
 		quizname = quizname
 		settings.quizid = ""
@@ -237,20 +247,33 @@ class QuizHandler():
 		settings.questionremain = settings.totalquest
 		#return FirstQuestion
 		
+	def GetFinish():
+		finished = False
+		if (settings.questionremain == 0):
+			finished = True
+		return finished
+		
 	def Question():
 		finished = False
 		question = ""
 		#settings.questnum = random.randrange(-1, settings.questionremain)
-		if (settings.questionremain == 0):
-			finished = True
-		else:
-			if (settings.quiztype == "normal"):
-				quiztype = "normal"
-				question = settings.quizquestions[settings.questnum]
+		if (settings.quiztype == "normal"):
+			quiztype = "normal"
+			choice_a = ""
+			choice_b = ""
+			choice_c = ""
+			choice_d = ""
+			question = settings.quizquestions[settings.questnum]
+		elif (settings.quiztype == "choice"):
+			quiztype = "choice"
+			question = settings.quizquestions[settings.questnum]
+			choice_a = settings.choices["A"][settings.questnum]
+			choice_b = settings.choices["B"][settings.questnum]
+			choice_c = settings.choices["C"][settings.questnum]
+			choice_d = settings.choices["D"][settings.questnum]
+		return question, choice_a, choice_b, choice_c, choice_d
 		
-		return question, finished
-		
-	def Answer(ansinput):
+	def ShortAnswer(ansinput):
 		correctanswer = settings.quizanswers[settings.questnum]
 		ansinput = ansinput
 		#CHECK TYPE OF QUIZ
@@ -266,7 +289,20 @@ class QuizHandler():
 		settings.questionremain -= 1
 		settings.totalanswered += 1
 		settings.questnum = settings.questnum + 1
-		return correct			
+		return correct
+	
+	def MultiAnswer(multianswer):
+		correctanswer = settings.quizanswers[settings.questnum]
+		if (str(multianswer) == str(correctanswer)):
+			correct = True
+			settings.score +=1
+		else:
+			correct = False
+			
+		settings.questionremain -= 1
+		settings.totalanswered += 1
+		settings.questnum = settings.questnum + 1
+		return correct
 
 	def Finished():
 		score = settings.score

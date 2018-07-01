@@ -61,6 +61,8 @@ def init():
 	questnum = 0
 	global totalanswered
 	totalanswered = 0
+	global choices
+	choices = {}
 	'''
 	INFORMATION VARIABLES
 	'''

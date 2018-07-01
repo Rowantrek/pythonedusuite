@@ -2017,6 +2017,9 @@ class Ui_guiq_main():
 		spacerItem11 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
 		self.gridLayout_6.addItem(spacerItem11, 2, 1, 1, 1)
 		self.stackedWidget.addWidget(self.guiq_menu)
+		'''
+		QUESTION PAGE		
+		'''
 		self.guiq_quest = QtWidgets.QWidget()
 		self.guiq_quest.setObjectName("guiq_quest")
 		self.gridLayout = QtWidgets.QGridLayout(self.guiq_quest)
@@ -2030,6 +2033,42 @@ class Ui_guiq_main():
 		self.gridLayout.addItem(spacerItem14, 1, 0, 1, 1)
 		self.gridLayout_2 = QtWidgets.QGridLayout()
 		self.gridLayout_2.setObjectName("gridLayout_2")
+		spacerItem15 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_2.addItem(spacerItem15, 2, 0, 1, 1)
+		self.gridLayout_3 = QtWidgets.QGridLayout()
+		self.gridLayout_3.setContentsMargins(-1, -1, -1, 0)
+		self.gridLayout_3.setObjectName("gridLayout_3")
+		self.guiq_quest_btn_choice2 = QtWidgets.QPushButton(self.guiq_quest)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guiq_quest_btn_choice2.setFont(font)
+		self.guiq_quest_btn_choice2.setObjectName("guiq_quest_btn_choice2")
+		self.gridLayout_3.addWidget(self.guiq_quest_btn_choice2, 1, 1, 1, 1)
+		spacerItem16 = QtWidgets.QSpacerItem(200, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+		self.gridLayout_3.addItem(spacerItem16, 0, 0, 1, 1)
+		spacerItem17 = QtWidgets.QSpacerItem(200, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+		self.gridLayout_3.addItem(spacerItem17, 0, 2, 1, 1)
+		self.guiq_quest_btn_choice4 = QtWidgets.QPushButton(self.guiq_quest)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guiq_quest_btn_choice4.setFont(font)
+		self.guiq_quest_btn_choice4.setObjectName("guiq_quest_btn_choice4")
+		self.gridLayout_3.addWidget(self.guiq_quest_btn_choice4, 3, 1, 1, 1)
+		self.guiq_quest_btn_choice3 = QtWidgets.QPushButton(self.guiq_quest)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guiq_quest_btn_choice3.setFont(font)
+		self.guiq_quest_btn_choice3.setObjectName("guiq_quest_btn_choice3")
+		self.gridLayout_3.addWidget(self.guiq_quest_btn_choice3, 2, 1, 1, 1)
+		self.guiq_quest_btn_choice1 = QtWidgets.QPushButton(self.guiq_quest)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guiq_quest_btn_choice1.setFont(font)
+		self.guiq_quest_btn_choice1.setObjectName("guiq_quest_btn_choice1")
+		self.gridLayout_3.addWidget(self.guiq_quest_btn_choice1, 0, 1, 1, 1)
+		self.gridLayout_2.addLayout(self.gridLayout_3, 5, 0, 1, 1)
+		spacerItem18 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_2.addItem(spacerItem18, 7, 0, 1, 1)
 		self.guiq_quest_label_title = QtWidgets.QLabel(self.guiq_quest)
 		font = QtGui.QFont()
 		font.setPointSize(60)
@@ -2040,11 +2079,41 @@ class Ui_guiq_main():
 		self.guiq_quest_label_title.setAlignment(QtCore.Qt.AlignCenter)
 		self.guiq_quest_label_title.setObjectName("guiq_quest_label_title")
 		self.gridLayout_2.addWidget(self.guiq_quest_label_title, 0, 0, 1, 1)
+		self.guiq_quest_var_quizname = QtWidgets.QLabel(self.guiq_quest)
+		font = QtGui.QFont()
+		font.setPointSize(20)
+		font.setBold(True)
+		font.setWeight(75)
+		self.guiq_quest_var_quizname.setFont(font)
+		self.guiq_quest_var_quizname.setAlignment(QtCore.Qt.AlignCenter)
+		self.guiq_quest_var_quizname.setObjectName("guiq_quest_var_quizname")
+		self.gridLayout_2.addWidget(self.guiq_quest_var_quizname, 1, 0, 1, 1)
+		self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+		self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+		spacerItem19 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_4.addItem(spacerItem19)
+		self.guiq_quest_btn_exit = QtWidgets.QPushButton(self.guiq_quest)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guiq_quest_btn_exit.setFont(font)
+		self.guiq_quest_btn_exit.setObjectName("guiq_quest_btn_exit")
+		self.horizontalLayout_4.addWidget(self.guiq_quest_btn_exit)
+		spacerItem20 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_4.addItem(spacerItem20)
+		self.guiq_quest_btn_next = QtWidgets.QPushButton(self.guiq_quest)
+		font = QtGui.QFont()
+		font.setPointSize(16)
+		self.guiq_quest_btn_next.setFont(font)
+		self.guiq_quest_btn_next.setObjectName("guiq_quest_btn_next")
+		self.horizontalLayout_4.addWidget(self.guiq_quest_btn_next)
+		spacerItem21 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_4.addItem(spacerItem21)
+		self.gridLayout_2.addLayout(self.horizontalLayout_4, 8, 0, 1, 1)
 		self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
 		self.horizontalLayout_2.setContentsMargins(-1, -1, 0, 0)
 		self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-		spacerItem15 = QtWidgets.QSpacerItem(80, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-		self.horizontalLayout_2.addItem(spacerItem15)
+		spacerItem22 = QtWidgets.QSpacerItem(80, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_2.addItem(spacerItem22)
 		self.guiq_quest_label_answer = QtWidgets.QLabel(self.guiq_quest)
 		font = QtGui.QFont()
 		font.setPointSize(16)
@@ -2057,61 +2126,26 @@ class Ui_guiq_main():
 		self.guiq_quest_input_answer.setFont(font)
 		self.guiq_quest_input_answer.setObjectName("guiq_quest_input_answer")
 		self.horizontalLayout_2.addWidget(self.guiq_quest_input_answer)
-		spacerItem16 = QtWidgets.QSpacerItem(80, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-		self.horizontalLayout_2.addItem(spacerItem16)
-		self.gridLayout_2.addLayout(self.horizontalLayout_2, 4, 0, 1, 1)
-		self.gridLayout_3 = QtWidgets.QGridLayout()
-		self.gridLayout_3.setContentsMargins(-1, -1, -1, 0)
-		self.gridLayout_3.setObjectName("gridLayout_3")
-		self.guiq_quest_btn_choice2 = QtWidgets.QPushButton(self.guiq_quest)
-		self.guiq_quest_btn_choice2.setObjectName("guiq_quest_btn_choice2")
-		self.gridLayout_3.addWidget(self.guiq_quest_btn_choice2, 1, 1, 1, 1)
-		self.guiq_quest_btn_choice3 = QtWidgets.QPushButton(self.guiq_quest)
-		self.guiq_quest_btn_choice3.setObjectName("guiq_quest_btn_choice3")
-		self.gridLayout_3.addWidget(self.guiq_quest_btn_choice3, 2, 1, 1, 1)
-		spacerItem17 = QtWidgets.QSpacerItem(200, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-		self.gridLayout_3.addItem(spacerItem17, 0, 0, 1, 1)
-		spacerItem18 = QtWidgets.QSpacerItem(200, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-		self.gridLayout_3.addItem(spacerItem18, 0, 2, 1, 1)
-		self.guiq_quest_btn_choice4 = QtWidgets.QPushButton(self.guiq_quest)
-		self.guiq_quest_btn_choice4.setObjectName("guiq_quest_btn_choice4")
-		self.gridLayout_3.addWidget(self.guiq_quest_btn_choice4, 3, 1, 1, 1)
-		self.guiq_quest_btn_choice1 = QtWidgets.QPushButton(self.guiq_quest)
-		self.guiq_quest_btn_choice1.setObjectName("guiq_quest_btn_choice1")
-		self.gridLayout_3.addWidget(self.guiq_quest_btn_choice1, 0, 1, 1, 1)
-		self.gridLayout_2.addLayout(self.gridLayout_3, 3, 0, 1, 1)
-		self.guiq_quest_var_quizname = QtWidgets.QLabel(self.guiq_quest)
+		spacerItem23 = QtWidgets.QSpacerItem(80, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+		self.horizontalLayout_2.addItem(spacerItem23)
+		self.gridLayout_2.addLayout(self.horizontalLayout_2, 6, 0, 1, 1)
+		self.guiq_quest_var_question = QtWidgets.QLabel(self.guiq_quest)
 		font = QtGui.QFont()
-		font.setPointSize(20)
-		font.setBold(True)
-		font.setWeight(75)
-		self.guiq_quest_var_quizname.setFont(font)
-		self.guiq_quest_var_quizname.setAlignment(QtCore.Qt.AlignCenter)
-		self.guiq_quest_var_quizname.setObjectName("guiq_quest_var_quizname")
-		self.gridLayout_2.addWidget(self.guiq_quest_var_quizname, 1, 0, 1, 1)
-		spacerItem19 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-		self.gridLayout_2.addItem(spacerItem19, 2, 0, 1, 1)
-		self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
-		self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-		spacerItem20 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-		self.horizontalLayout_4.addItem(spacerItem20)
-		self.guiq_quest_btn_exit = QtWidgets.QPushButton(self.guiq_quest)
-		self.guiq_quest_btn_exit.setObjectName("guiq_quest_btn_exit")
-		self.horizontalLayout_4.addWidget(self.guiq_quest_btn_exit)
-		spacerItem21 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-		self.horizontalLayout_4.addItem(spacerItem21)
-		self.guiq_quest_btn_next = QtWidgets.QPushButton(self.guiq_quest)
-		self.guiq_quest_btn_next.setObjectName("guiq_quest_btn_next")
-		self.horizontalLayout_4.addWidget(self.guiq_quest_btn_next)
-		spacerItem22 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-		self.horizontalLayout_4.addItem(spacerItem22)
-		self.gridLayout_2.addLayout(self.horizontalLayout_4, 6, 0, 1, 1)
-		spacerItem23 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-		self.gridLayout_2.addItem(spacerItem23, 5, 0, 1, 1)
+		font.setPointSize(16)
+		self.guiq_quest_var_question.setFont(font)
+		self.guiq_quest_var_question.setAlignment(QtCore.Qt.AlignCenter)
+		self.guiq_quest_var_question.setObjectName("guiq_quest_var_question")
+		self.gridLayout_2.addWidget(self.guiq_quest_var_question, 3, 0, 1, 1)
+		spacerItem24 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+		self.gridLayout_2.addItem(spacerItem24, 4, 0, 1, 1)
 		self.gridLayout.addLayout(self.gridLayout_2, 1, 1, 1, 1)
-		spacerItem24 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-		self.gridLayout.addItem(spacerItem24, 2, 1, 1, 1)
+		spacerItem25 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+		self.gridLayout.addItem(spacerItem25, 2, 1, 1, 1)
 		self.stackedWidget.addWidget(self.guiq_quest)
+		
+		'''
+		ANSWER PAGE
+		'''
 		self.guiq_answer = QtWidgets.QWidget()
 		self.guiq_answer.setObjectName("guiq_answer")
 		self.gridLayout_8 = QtWidgets.QGridLayout(self.guiq_answer)
@@ -2305,6 +2339,12 @@ class Ui_guiq_main():
 		self.guiq_quest_btn_next.clicked.connect(self.QuizAnswer)
 		self.guiq_answer_btn_exit.clicked.connect(self.exit)
 		self.guiq_answer_btn_next.clicked.connect(self.QuizQuestion)
+		self.guiq_results_btn_exit.clicked.connect(self.exit)
+		self.guiq_results_btn_tryagain.clicked.connect(self.MainMenu)
+		self.guiq_quest_btn_choice1.clicked.connect(self.MultiChoiceA)
+		self.guiq_quest_btn_choice2.clicked.connect(self.MultiChoiceB)
+		self.guiq_quest_btn_choice3.clicked.connect(self.MultiChoiceC)
+		self.guiq_quest_btn_choice4.clicked.connect(self.MultiChoiceD)
 		'''
 		'''
 		#DISPLAY THE WINDOW
@@ -2343,6 +2383,7 @@ class Ui_guiq_main():
 		self.guiq_results_var_score.setText(_translate("self.guiq_main", "Score"))
 		self.guiq_results_label_text2.setText(_translate("self.guiq_main", "Out of"))
 		self.guiq_results_var_maxscore.setText(_translate("self.guiq_main", "MAX SCORE"))
+		self.guiq_quest_var_question.setText(_translate("self.guiq_main", "TextLabel"))
 		self.guiq_results_label_title.setText(_translate("self.guiq_main", "EduSuite"))
 		self.guiq_results_var_quizname.setText(_translate("self.guiq_main", "Quiz Name"))
 		self.guiq_results_label_text1.setText(_translate("self.guiq_main", "You completed the quiz! You got..."))
@@ -2363,9 +2404,10 @@ class Ui_guiq_main():
 		self.guiq_quest_btn_choice4.hide()
 		self.guiq_answer_label_incorrect.hide()
 		self.guiq_answer_label_correct.hide()
+		self.guiq_quest_input_answer.setText("")
 
 	def DataInit(self):
-		quiz = "maths1_1"
+		quiz = self.quizid
 		edufunctions.QuizHandler.InitQuiz(quiz)
 		
 	def MainMenu(self):
@@ -2378,34 +2420,74 @@ class Ui_guiq_main():
 		
 	def QuizQuestion(self):
 		self.init()
-		self.guiq_menu_var_quizname.setText(self.translate("self.guiq_main", settings.quizname))
-		question, finished = edufunctions.QuizHandler.Question()
+		self.guiq_quest_var_quizname.setText(self.translate("self.guiq_main", settings.quizname))
+		finished = edufunctions.QuizHandler.GetFinish()
 		if (finished == True):
 			self.QuizFinish()
 		else:
 			if (settings.quiztype == "normal"):
+				question, choice_a, choice_b, choice_c, choice_d = edufunctions.QuizHandler.Question()
 				self.guiq_quest_label_answer.show()
 				self.guiq_quest_input_answer.show()
-				self.guiq_quest_var_quizname.setText(self.translate("self.guiq_main", question))
+				self.guiq_quest_var_question.setText(self.translate("self.guiq_main", question))
 			elif (settings.quiztype == "choice"):
-				pass
-		self.stackedWidget.setCurrentIndex(1)
-				
+				question, choice_a, choice_b, choice_c, choice_d = edufunctions.QuizHandler.Question()
+				self.guiq_quest_btn_choice1.show()
+				self.guiq_quest_btn_choice1.setText(self.translate("self.guiq_main", choice_a))
+				self.guiq_quest_btn_choice2.show()
+				self.guiq_quest_btn_choice2.setText(self.translate("self.guiq_main", choice_b))
+				self.guiq_quest_btn_choice3.show()
+				self.guiq_quest_btn_choice3.setText(self.translate("self.guiq_main", choice_c))
+				self.guiq_quest_btn_choice4.show()
+				self.guiq_quest_btn_choice4.setText(self.translate("self.guiq_main", choice_d))
+				self.guiq_quest_var_question.setText(self.translate("self.guiq_main", question))
+			self.stackedWidget.setCurrentIndex(1)
+			
+	''' METHODS FOR ON CLICK, MULTI CHOICE ANSWERS '''	
+	def MultiChoiceA(self):
+		self.multianswer = "A"
+		self.QuizAnswer()
+	
+	def MultiChoiceB(self):
+		self.multianswer = "B"
+		self.QuizAnswer()
+	
+	def MultiChoiceC(self):
+		self.multianswer = "C"
+		self.QuizAnswer()
+	
+	def MultiChoiceD(self):
+		self.multianswer = "D"
+		self.QuizAnswer()
 				
 	def QuizAnswer(self):
-		self.guiq_quest_var_quizname.setText(self.translate("self.guiq_main", settings.quizname))
+		self.guiq_answer_var_quizname.setText(self.translate("self.guiq_main", settings.quizname))
 		ansinput = self.guiq_quest_input_answer.text()
-		correct = edufunctions.QuizHandler.Answer(ansinput)
 		self.init()
-		if (correct == True):
-			self.guiq_answer_label_correct.show()
-		else:
-			self.guiq_answer_label_correct.show()
+		if (settings.quiztype == "normal"):
+			correct = edufunctions.QuizHandler.ShortAnswer(ansinput)
+			if (correct == True):
+				self.guiq_answer_label_correct.show()
+			else:
+				self.guiq_answer_label_incorrect.show()
+		elif (settings.quiztype == "choice"):
+			correct = edufunctions.QuizHandler.MultiAnswer(self.multianswer)
+			if (correct == True):
+				self.guiq_answer_label_correct.show()
+			else:
+				self.guiq_answer_label_incorrect.show()
 			
+			
+		
 		self.stackedWidget.setCurrentIndex(2)
 			
 		
 	def QuizFinish(self):
-		pass
-		
+		self.init()
+		score,maxscore = edufunctions.QuizHandler.Finished()
+		self.guiq_results_var_quizname.setText(self.translate("self.guiq_main", settings.quizname))
+		self.guiq_results_label_text1.show()
+		self.guiq_results_var_score.setText(self.translate("self.guiq_main", str(score)))
+		self.guiq_results_var_maxscore.setText(self.translate("self.guiq_main", str(maxscore)))
+		self.stackedWidget.setCurrentIndex(3)
 		
