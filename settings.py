@@ -13,6 +13,9 @@ import edufunctions
 import edugui
 
 def init():
+	'''
+	USER MANAGEMENT VARIABLES
+	'''
 	global user
 	user = "Guest"
 	global email
@@ -35,7 +38,9 @@ def init():
 	admin_level = 0
 	global synctime
 	synctime = 120
-	''' QUESTIONS '''
+	'''
+	QUIZ RELATED VARIABLES
+	'''
 	global quizid
 	quizid = ""
 	global quiztype
@@ -50,15 +55,30 @@ def init():
 	quizname = ""
 	global questionremain
 	questionremain = 10
+	global score
+	score = 0
+	global questnum
+	questnum = 0
+	global totalanswered
+	totalanswered = 0
 	'''
-	INFO INIT
+	INFORMATION VARIABLES
 	'''
+	global activeinfo
+	activeinfo = {"maths1": 0, "maths2":0, "maths3":0, "maths4":0, "maths5":0, "maths6":0, "compute1":0,"compute2":0,"compute3":0,"compute4":0,"compute5":0,"compute6":0,"hist1":0,"hist2":0,"hist3":0,"hist4":0,"hist5":0,"hist6":0}
+	global infoimg
+	infoimg = {}
 	global info_content
 	info_content = {'version':'version'}
+	global infotype
+	infotype = {}
+	'''
+	QUIZ QUERY
+	'''
+	global quizactive
+	quizactive = {}
 	
-	info_vars = ["additsub", "multdiv", "primecomp"]
-	for _i in info_vars:
-		edufunctions.RDB.QueryInfoContent(_i)
+
 	'''
 	SYNC INIT
 	'''
