@@ -15,7 +15,7 @@ class RDB():
 	def Connect():
 		global connection
 		global cursor
-		connection = pymysql.connect(host='localhost',user='root',password='root',db='sdd',charset='utf8mb4')
+		connection = pymysql.connect(host='45.76.121.220',user='software',password='software',db='sdd',charset='utf8mb4')
 		cursor = connection.cursor()
 	def CloseConn():
 		connection.close()
@@ -34,7 +34,7 @@ class RDB():
 		compute_scores = [0,0,0,0,0,0]
 		hist_scores = [0,0,0,0,0,0]
 		admin_level = 0
-		sql = "SELECT * FROM USERS WHERE `USERNAME`=%s"
+		sql = "SELECT * FROM users WHERE `username`=%s"
 		cursor.execute(sql, (username))
 		results = cursor.fetchall()
 		for row in results:
@@ -64,14 +64,14 @@ class RDB():
 			return True
 		else:
 			return False
-		connection.close()
+		
 	def Register(username,password,email,dob):
 		#CALLING DB CONNECT
 		RDB.Connect()
 		insertRequest = "INSERT INTO `users` (`username`, `password`, `email`, `dob`) VALUES (%s, %s, %s, %s)"
 		cursor.execute(insertRequest, (username, password, email, dob))
 		connection.commit()
-		sql = "SELECT * FROM USERS WHERE `USERNAME`=%s"
+		sql = "SELECT * FROM users WHERE `username`=%s"
 		cursor.execute(sql, (username))
 		results = cursor.fetchall()
 		for row in results:
@@ -82,7 +82,7 @@ class RDB():
 			return True
 		else:
 			return False
-		connection.close()
+		
 	def UpdateUser(oldusername,username):
 		#CALL DB
 		RDB.Connect()
@@ -90,14 +90,14 @@ class RDB():
 		cursor.execute(updateRequest, (username, oldusername))
 		connection.commit()
 		return True
-		connection.close()
+		
 		settings.user = username
 		
 	def UpdatePassword(oldpass, newpass):
 		RDB.Connect()
 		username = settings.user
 		passw = ""
-		query = "SELECT * FROM USERS WHERE USERNAME=%s"
+		query = "SELECT * FROM users WHERE username=%s"
 		cursor.execute(query, (username))
 		results = cursor.fetchall()
 		for row in results:
@@ -110,7 +110,7 @@ class RDB():
 			return True
 		else:
 			return False
-		connection.close()
+		
 		
 	def UpdateEmail(newemail):
 		RDB.Connect()
@@ -118,7 +118,7 @@ class RDB():
 		updateRequest = "UPDATE users SET email=%s WHERE username=%s"
 		cursor.execute(updateRequest, (newemail, username))
 		connection.commit()
-		connection.close()
+		
 		settings.email = newemail
 		return True
 	
@@ -128,7 +128,7 @@ class RDB():
 		updateRequest = "UPDATE users set dob=%s WHERE username=%s"
 		cursor.execute(updateRequest, (newdob, username))
 		connection.commit()
-		connection.close()
+		
 		settings.dob = newdob
 		return True
 	
@@ -137,19 +137,19 @@ class RDB():
 		#Define variables to ensure error is not given if DB does not find anything
 		info_name = ""
 		info_content = ""
-		contentQuery = "SELECT * FROM INFO WHERE idinfo = %s"
+		contentQuery = "SELECT * FROM info WHERE idinfo = %s"
 		cursor.execute(contentQuery, (content_id))
 		results = cursor.fetchall()
 		for row in results:
 			info_name = row[2]
 			info_content = row[3]
 			infotype = row[1]
-		connection.close()
+		
 		return info_name, info_content, infotype				
 				
 	def QuizImages(quiz):
 		RDB.Connect()
-		query = "SELECT * FROM QUIZ WHERE quizid = %s"
+		query = "SELECT * FROM quiz WHERE quizid = %s"
 		cursor.execute(query, (quiz))
 		results = cursor.fetchall()
 		for row in results:
@@ -158,7 +158,7 @@ class RDB():
 	
 	def CatImages(menu):
 		RDB.Connect()
-		query = "SELECT * FROM INFO WHERE idinfo = %s"
+		query = "SELECT * FROM info WHERE idinfo = %s"
 		cursor.execute(query, (menu))
 		results = cursor.fetchall()
 		for row in results:
@@ -173,14 +173,14 @@ class RDB():
 		maths_scores = settings.maths_scores
 		compute_scores = settings.compute_scores
 		hist_scores = settings.hist_scores
-		scoreQuery = "SELECT * FROM USERS WHERE username = %s"
+		scoreQuery = "SELECT * FROM users WHERE username = %s"
 		cursor.execute(scoreQuery, (username))
 		results = cursor.fetchall()
 		for row in results:
 			settings.maths_scores = row[8]
 			settings.compute_scores = row[9]
 			settings.hist_scores = row[10]
-		connection.close()
+		
 		settings.maths_scores = settings.maths_scores.split(",")
 		settings.compute_scores = settings.compute_scores.split(",")
 		settings.hist_scores = settings.hist_scores.split(",")
@@ -191,11 +191,11 @@ class RDB():
 		hist = settings.hist_scores
 		RDB.Connect()
 		
-		connection.close()
+		
 	
 	def GetQuestions(quiz):
 		RDB.Connect()
-		quizQuery = "SELECT * FROM QUIZ WHERE quizid = %s"
+		quizQuery = "SELECT * FROM quiz WHERE quizid = %s"
 		cursor.execute(quizQuery, (quiz))
 		results = cursor.fetchall()
 		for row in results:
@@ -232,7 +232,7 @@ class RDB():
 		
 class QuizHandler():
 	def InitQuiz(quizname):
-		#CHECK WHAT QUIZ SO WE CAN LOAD THE STUFF
+		#CHECK WHAT quiz SO WE CAN LOAD THE STUFF
 		quizname = quizname
 		settings.quizid = ""
 		settings.quiztype = ""
@@ -276,7 +276,7 @@ class QuizHandler():
 	def ShortAnswer(ansinput):
 		correctanswer = settings.quizanswers[settings.questnum]
 		ansinput = ansinput
-		#CHECK TYPE OF QUIZ
+		#CHECK TYPE OF quiz
 		if (settings.quiztype == "normal"):
 			if (str(ansinput) == str(correctanswer)):
 				correct = True
@@ -322,7 +322,7 @@ class gui():
 		quizimages["one"] = RDB.QuizImages(menu + "_1")
 		quizimages["two"] = RDB.QuizImages(menu + "_2")
 		quizimages["three"] = RDB.QuizImages(menu + "_3")
-		connection.close()
+		
 		return info_name, info_content, infotype, quizimages
 	
 	def catmenu(menu):
@@ -335,12 +335,12 @@ class gui():
 			cat_title = "History"
 		else:
 			cat_title = "ERROR RETREIVING DATA"
-		#PROCESS FOR GETTING INFO_IMAGES
+		#PROCESS FOR GETTING info_IMAGES
 		info_images = {"one":"","two":"","three":""}
 		info_images["one"] = RDB.CatImages(menu + "1")
 		info_images["two"] = RDB.CatImages(menu + "2")
 		info_images["three"] = RDB.CatImages(menu + "3")
-		connection.close()
+		
 		return cat_title, info_images
 		
 		
