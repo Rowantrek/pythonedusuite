@@ -1738,6 +1738,8 @@ class UI_MAIN(object):
 		self.guif_cm_btn_2.clicked.connect(self.CATButton2)
 		self.guif_cm_btn_3.show()
 		self.guif_cm_btn_3.clicked.connect(self.CATButton3)
+		if (self.menu == "hist"):
+			self.guif_cm_btn_3.hide()
 		
 		self.guif_mm_stacker.setCurrentIndex(5)
 
@@ -1876,22 +1878,64 @@ class UI_MAIN(object):
 			self.QuizMenu = "maths3_1"
 		#COMPUTE SECTION
 		elif (self.subcat == "compute1"):
-			self.QuizMenu = "Compute1_1"
+			self.QuizMenu = "compute1_1"
+		elif (self.subcat == "compute2"):
+			self.QuizMenu = "compute2_1"
+		elif (self.subcat == "compute3"):
+			self.QuizMenu = "compute3_1"
 		#HISTROY SECTION
 		elif (self.subcat == "hist1"):
 			self.QuizMenu = "hist1_1"
+		elif (self.subcat == "hist2"):
+			self.QuizMenu = "hist2_1"
 		self.InitOtherWindow()
 			
 	def QuizButton2(self):
 		#MATHS SECTION
 		if (self.subcat == "maths1"):
 			self.QuizMenu = "maths1_2"
+		elif (self.subcat == "maths2"):
+			self.QuizMenu = "maths2_2"
+		elif (self.subcat == "maths3"):
+			self.QuizMenu = "maths3_2"
+		#COMPUTE SECTION
+		elif (self.subcat == "compute2"):
+			self.QuizMenu = "compute2_2"
+		elif (self.subcat == "compute1"):
+			self.QuizMenu = "compute1_2"
+		elif (self.subcat == "compute3"):
+			self.QuizMenu = "compute3_2"
+		#HISTORY SECTION
+		elif (self.subcat == "hist1"):
+			self.QuizMenu = "hist1_2"
+		elif (self.subcat == "hist2"):
+			self.QuizMenu = "hist2_2"
+		elif (self.subcat == "hist3"):
+			self.QuizMenu = "hist3_2"
 		self.InitOtherWindow()
 		
 	def QuizButton3(self):
 		#MATHS SECTION
 		if (self.subcat == "maths1"):
 			self.QuizMenu = "maths1_3"
+		elif (self.subcat == 'maths2'):
+			self.QuizMenu = "maths2_3"
+		elif (self.subcat == "maths3"):
+			self.QuizMenu = "maths3_3"
+		#COMPUTER SECTION
+		elif (self.subcat == "compute1"):
+			self.QuizMenu = "compute1_3"
+		elif (self.subcat == "compute2"):
+			self.QuizMenu = "compute2_3"
+		elif (self.subcat == "compute3"):
+			self.QuizMenu = "compute3_3"
+		#HISTORY
+		elif (self.subcat == "hist1"):
+			self.QuizMenu = "hist1_3"
+		elif (self.subcat == "hist2"):
+			self.QuizMenu = "hist2_3"
+		elif (self.subcat == "hist3"):
+			self.QuizMenu = "hist3_3"
 		self.InitOtherWindow()
 		
 	''' METHOD FOR CALLING QUIZ WINDOW'''
