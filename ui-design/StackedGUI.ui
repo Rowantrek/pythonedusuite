@@ -1678,7 +1678,7 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="../main.qrc">
+                  <iconset>
                    <normaloff>:/math_main/img/additsubtract.png</normaloff>:/math_main/img/additsubtract.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -1695,7 +1695,7 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="../main.qrc">
+                  <iconset>
                    <normaloff>:/math_main/img/multidiv.png</normaloff>:/math_main/img/multidiv.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -1712,7 +1712,7 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="../main.qrc">
+                  <iconset>
                    <normaloff>:/math_main/img/primecomp.png</normaloff>:/math_main/img/primecomp.png</iconset>
                  </property>
                  <property name="iconSize">

@@ -10,7 +10,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets, uic, QtWebKitWidgets
 #IMPORT EduSuite Functions
 import edufunctions
 #IMPORT MAIN GUI
-import main_rc
+import resources
 #IMPORT SETTINGS
 import settings
 

@@ -7,9 +7,23 @@
   <qresource prefix="general">
     <file>img/placeholder.png</file>
   </qresource>
-  <qresource prefix="math_main">
+  <qresource prefix="quiz">
+    <file>img/quiz1.png</file>
+    <file>img/quiz2.png</file>
+    <file>img/quiz3.png</file>
+  </qresource>
+  <qresource prefix="math">
     <file>img/primecomp.png</file>
     <file>img/multidiv.png</file>
     <file>img/additsubtract.png</file>
+  </qresource>
+  <qresource prefix="compute">
+    <file>img/Binary.png</file>
+    <file>img/computercomponents.png</file>
+    <file>img/network.png</file>
+  </qresource>
+  <qresource prefix="history">
+    <file>img/worldwarone.png</file>
+    <file>img/worldwartwo.png</file>
   </qresource>
 </RCC>
