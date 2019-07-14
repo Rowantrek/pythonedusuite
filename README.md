@@ -1,6 +1,6 @@
 # pythonedusuite
 Python Education Suite | SDD Assignment #2 2018 Preliminary.
-Welcome to EDUSuite, an education program designed to further the abilties and knowledge of students
+Welcome to EDUSuite, an education program designed to further the abilities and knowledge of students
 
 Keys Subjects (KLA):
 -
